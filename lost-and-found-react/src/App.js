@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import Notifications, { notify } from 'react-notify-toast'
+// import Notifications, { notify } from 'react-notify-toast'
 import Spinner from './components/Spinner'
 import Images from './components/Images'
 import Buttons from './components/Buttons'
 import WakeUp from './components/WakeUp'
 import Footer from './components/Footer'
 import { API_URL } from './config'
+import Items from './components/Item'
 import './App.css'
 
 const toastColor = { 
@@ -125,9 +126,11 @@ export default class App extends Component {
     return (
       <div className='container'>
         <Notifications />
+
+        {/* <Items items={[{name: "Hi"}]} /> */}
         <div className='buttons'>
           {content()}
-        </div>
+        </div> 
         <Footer />
       </div>
     )
