@@ -20,7 +20,6 @@ import './App.css'
   }
 
 
-
   render() {
 
     return (
@@ -33,6 +32,8 @@ import './App.css'
               : <button onClick={() => this.setView("signin")} className="loginRegisterButton">Login/Register</button>}
           </div>
         </div>
+
+        {/* {this.state.activeView === "search" ? } */}
       </div>
     )
   }
