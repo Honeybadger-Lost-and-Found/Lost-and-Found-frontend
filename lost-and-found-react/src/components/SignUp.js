@@ -35,6 +35,18 @@ class SignUp extends Component {
             console.log(data)
             console.log("Success"); 
           })
+          .catch(error => {
+            console.log(error);
+          })
+    }
+
+    handleChange(event) {
+      console.log("changes"); 
+
+      let formData = {}; 
+      formData[event.target.name] = event.target.value ; 
+   
+      this.setState(formData);
     }
 
     handleChange(event) {
@@ -51,8 +63,7 @@ class SignUp extends Component {
             <div>
               <h3>Sign Up</h3>
             <form onSubmit={this.handleSubmit.bind(this)}>
-            <label>Name:</label><input type="text" onChange={this.handleChange.bind(this)} name="username" /><br/>
-            
+              <label>Name:</label><input type="text" onChange={this.handleChange.bind(this)} name="username" /><br/>
               <label>Email:</label><input type="text" onChange={this.handleChange.bind(this)}  name="email" /><br/>
               <label>Phone:</label><input type="text" onChange={this.handleChange.bind(this)}  name="phone" /><br/>
               <button>submit</button>
@@ -60,5 +71,7 @@ class SignUp extends Component {
           </div>
         )
     }
-}       
+}
+
 export default SignUp;
+
