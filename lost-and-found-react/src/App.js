@@ -23,8 +23,8 @@ class App extends Component {
     this.setState({ user: user });
   }
 
-  setCurrentItem(item){
-    this.setState({currentItem: item});
+  setCurrentItem(item) {
+    this.setState({ currentItem: item });
   }
 
   renderContent() {
@@ -41,7 +41,7 @@ class App extends Component {
 
           <div className="landingButtonContainer">
             <button className="landingButton" onClick={() => {
-              if(this.state.user) this.setView("form")
+              if (this.state.user) this.setView("form")
               else this.setView("signin")
             }}
             >Post an Item!</button>
@@ -73,7 +73,7 @@ class App extends Component {
       return (
         <div> my items placeholder</div>
         // <MyItems user={this.state.user}
-                    // setView={this.setView.bind(this)} />
+        // setView={this.setView.bind(this)} />
       )
     }
     else if (this.state.activeView === "itemshow") {
@@ -83,7 +83,7 @@ class App extends Component {
         //           currentItem={this.state.currentItem} />
       )
     }
-    else if(this.state.activeView === "form"){
+    else if (this.state.activeView === "form") {
       return (
         <div>form placeholder</div>
         // <Form user={this.state.user} />
@@ -95,8 +95,7 @@ class App extends Component {
 
     return (
       <div className="app">
-      <SignIn/>
-      <SignUp/>
+      
         <div className="header">
           <h1 className="mainHeading" onClick={() => this.setView("landing")}>Lost and Found</h1>
           <div className="actionButtons">
