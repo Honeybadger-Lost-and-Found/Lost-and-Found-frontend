@@ -26,6 +26,7 @@ class App extends Component {
   render() {
 
     return (
+
       <div className="app">
         <div className="header">
           <h1>Lost and Found</h1>
@@ -35,6 +36,7 @@ class App extends Component {
               : <button onClick={() => this.setView("signin")} className="loginRegisterButton">Login/Register</button>}
           </div>
         </div>
+
       </div>
     )
   }
