@@ -67,7 +67,7 @@ class Search extends Component {
     else {
 
       return this.state.results.map((result, index) => {
-
+        console.log(result)
         return <Item key={index} item={result} />
       })
     }
@@ -80,12 +80,13 @@ class Search extends Component {
 
         <div className="back"> Back</div>
 
-        <div className="search-container">
+        <div>
 
           <form className="search" onSubmit={this.handleSubmit.bind(this)}>
 
-            <input type="text" onChange={this.handleChange.bind(this)} />
-            <button> <img src="https://i.imgur.com/WX7bym4.png" alt="" /> </button>
+            <input className="input-text" type="text" placeholder="Search.." onChange={this.handleChange.bind(this)} />
+
+            <button className="search-button"> submit </button>
 
           </form>
 
