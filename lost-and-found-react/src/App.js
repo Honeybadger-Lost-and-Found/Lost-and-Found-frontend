@@ -64,9 +64,9 @@ class App extends Component {
     }
     else if (this.state.activeView === "signin") {
       return (
-        <div>sign in placeholder</div>
-        // <SignIn setView={this.setView.bind(this)}
-        //   setUser={this.setUser.bind(this)} />
+        // <div>sign in placeholder</div>
+        <SignIn setView={this.setView.bind(this)}
+          setUser={this.setUser.bind(this)} />
       )
     }
     else if (this.state.activeView === "myitems") {
@@ -94,8 +94,8 @@ class App extends Component {
   render() {
 
     return (
+
       <div className="app">
-      
         <div className="header">
           <h1 className="mainHeading" onClick={() => this.setView("landing")}>Lost and Found</h1>
           <div className="actionButtons">
