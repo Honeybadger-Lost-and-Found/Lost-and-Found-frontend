@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
-import Notifications, { notify } from 'react-notify-toast'
+// import Notifications, { notify } from 'react-notify-toast'
 import Spinner from './components/Spinner'
 import Images from './components/Images'
 import Buttons from './components/Buttons'
 import WakeUp from './components/WakeUp'
-import Footer from './components/Footer'
+// import Footer from './components/Footer'
 import { API_URL } from './config'
 import './App.css'
+import Search from './components/Search';
 
 const toastColor = { 
   background: '#505050', 
@@ -32,7 +33,7 @@ export default class App extends Component {
       })
   }
 
-  toast = notify.createShowQueue()
+  // toast = notify.createShowQueue()
 
   onChange = e => {
     const errs = [] 
@@ -124,11 +125,12 @@ export default class App extends Component {
 
     return (
       <div className='container'>
-        <Notifications />
+        {/* <Notifications />
         <div className='buttons'>
           {content()}
         </div>
-        <Footer />
+        <Footer /> */}
+        <Search />
       </div>
     )
   }
