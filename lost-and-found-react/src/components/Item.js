@@ -19,7 +19,7 @@ class Items extends Component{
                             </select>
                             
                             <p>Added By:{item.addedBy}</p>
-                            <p>Added date{items.addedDate}</p>
+                            <p>Added date{item.addedDate}</p>
                         </div>
 
 

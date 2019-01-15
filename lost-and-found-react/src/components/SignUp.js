@@ -15,7 +15,7 @@ class SignUp extends Component {
     handleSubmit(event){
         event.preventDefault();
         const data = {
-          name : this.state.name,
+          username : this.state.username,
           email : this.state.email,
           phone : this.state.phone
         }
@@ -36,16 +36,17 @@ class SignUp extends Component {
     }
 
    handelChange(event) {
-      this.setState({[event.target.name]: event.target.value});  
+      this.setState({[event.target.usename]: event.target.value});  
   }
    
     render(){
         return(
             <div>
-            <form onSubmit={this.handleSubmit()}>
-            <label>Name:</label><input type="text" onChange={this.handelChange()} name="name" /><br/>
-              <label>Email:</label><input type="text" onChange={this.handelChange()} name="email" /><br/>
-              <label>Phone:</label><input type="text" onChange={this.handelChange()} name="phone" /><br/>
+              <h3>Sign Up</h3>
+            <form onSubmit={this.handleSubmit.bind(this)}>
+            <label>Name:</label><input type="text" onChange={this.handelChange.bind(this)} name="username" /><br/>
+              <label>Email:</label><input type="text" onChange={this.handelChange.bind(this)} name="email" /><br/>
+              <label>Phone:</label><input type="text" onChange={this.handelChange.bind(this)} name="phone" /><br/>
               <button>submit</button>
             </form>
           </div>
