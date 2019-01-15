@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import Item from './components/Item'
 
+
  class App extends Component {
   constructor() {
     super();
@@ -18,7 +19,11 @@ import Item from './components/Item'
   setUser(user) {
     this.setState({ user: user });
   }
-
+setItems(items){
+  console.log('setting up items')
+  console.log(items)
+  this.se
+}
 
 
   render() {
