@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 
 
-
-export default class App extends Component {
+ class App extends Component {
   constructor() {
     super();
     this.state = {
@@ -21,6 +20,13 @@ export default class App extends Component {
   }
 
 
+
+  renderItems(){
+    return this.state.items.map(item => {
+      return <Item key={item.id} item={item}/>
+    })  
+  }
+
   render() {
 
     return (
@@ -37,3 +43,5 @@ export default class App extends Component {
     )
   }
 }
+
+export default App;
