@@ -3,12 +3,13 @@ import React  from "react";
 
 
 const Item=(props)=>{
+
     return(
         <div className="item">
-        <p>{props.item.name}</p>
-        <p>{props.item.imageUrl}</p>
-        <p>{props.item.addedBy}</p>
-        <p>{props.item.addedDate}</p>
+        <p className="p">{props.item.name}</p>
+        <img className="img" src={props.item.imageurl} alt=""/>
+        <p className="p">{props.item.addedby}</p>
+        <p className="p">{props.item.addeddate}</p>
         
         </div>
     )
