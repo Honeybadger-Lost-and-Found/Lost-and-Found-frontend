@@ -3,7 +3,7 @@ import './App.css'
 import Search from './components/Search';
 import Item from './components/Item';
 import SignUp from './components/SignUp';
-
+import SignIn from './components/SignIn';
 
 class App extends Component {
   constructor() {
@@ -95,6 +95,8 @@ class App extends Component {
 
     return (
       <div className="app">
+      <SignIn/>
+      <SignUp/>
         <div className="header">
           <h1 className="mainHeading" onClick={() => this.setView("landing")}>Lost and Found</h1>
           <div className="actionButtons">
