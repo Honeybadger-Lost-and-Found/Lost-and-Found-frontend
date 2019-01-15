@@ -94,9 +94,8 @@ class App extends Component {
   render() {
 
     return (
+
       <div className="app">
-      <SignIn/>
-      <SignUp/>
         <div className="header">
           <h1 className="mainHeading" onClick={() => this.setView("landing")}>Lost and Found</h1>
           <div className="actionButtons">

@@ -49,14 +49,6 @@ class SignUp extends Component {
       this.setState(formData);
     }
 
-    handleChange(event) {
-      console.log("changes"); 
-
-      let formData = {}; 
-      formData[event.target.name] = event.target.value ; 
-   
-      this.setState(formData);
-    }
    
     render(){
         return(
