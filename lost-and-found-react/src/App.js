@@ -21,12 +21,6 @@ import './App.css'
 
 
 
-  renderItems(){
-    return this.state.items.map(item => {
-      return <Item key={item.id} item={item}/>
-    })  
-  }
-
   render() {
 
     return (
@@ -34,9 +28,9 @@ import './App.css'
         <div className="header">
           <h1>Lost and Found</h1>
           <div className="actionButtons">
-            <button onClick={this.setView("search")} className="searchButton">Search</button>
-            {(this.state.user) ? <button onClick={this.setView("myitems")} className="myItemsButton">My Items</button>
-              : <button onClick={this.setView("signin")} className="loginRegisterButton">Login/Register</button>}
+            <button onClick={() => this.setView("search")} className="searchButton">Search</button>
+            {(this.state.user) ? <button onClick={ () => this.setView("myitems")} className="myItemsButton">My Items</button>
+              : <button onClick={() => this.setView("signin")} className="loginRegisterButton">Login/Register</button>}
           </div>
         </div>
       </div>
