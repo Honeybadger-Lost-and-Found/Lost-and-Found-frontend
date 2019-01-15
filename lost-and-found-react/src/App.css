@@ -2,6 +2,10 @@
   display: flex;
   justify-content: space-around;
 }
+.mainHeading{
+  cursor: pointer;
+}
+
 .header > h1{
   width: 50%;
 }
