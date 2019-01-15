@@ -4,7 +4,7 @@ import SignUp from './components/SignUp'
 import SignIn from './components/SignIn'
 import Item from './components/Item'
 
- class App extends Component {
+class App extends Component {
   constructor() {
     super();
     this.state = {
