@@ -19,7 +19,9 @@ class SignUp extends Component {
           email : this.state.email,
           phone : this.state.phone
         }
-        console.log(data)
+
+
+        console.log("data\n\n\n\n\n\n ******" , data)
         const url = 'http://localhost:3000/users'
         fetch(url, {
             method: 'POST',
@@ -28,25 +30,33 @@ class SignUp extends Component {
             },
             body: JSON.stringify(data)
           })
-          .then(response => response.json())
+          // .then(response => response.json())
           .then(data => {
             console.log(data)
             console.log("Success"); 
           })
+          .catch(error => {
+            console.log(error);
+          })
     }
 
-   handelChange(event) {
-      this.setState({[event.target.usename]: event.target.value});  
-  }
+    handleChange(event) {
+      console.log("changes"); 
+
+      let formData = {}; 
+      formData[event.target.name] = event.target.value ; 
+   
+      this.setState(formData);
+    }
    
     render(){
         return(
             <div>
               <h3>Sign Up</h3>
             <form onSubmit={this.handleSubmit.bind(this)}>
-            <label>Name:</label><input type="text" onChange={this.handelChange.bind(this)} name="username" /><br/>
-              <label>Email:</label><input type="text" onChange={this.handelChange.bind(this)} name="email" /><br/>
-              <label>Phone:</label><input type="text" onChange={this.handelChange.bind(this)} name="phone" /><br/>
+            <label>Name:</label><input type="text" onChange={this.handleChange.bind(this)} name="username" /><br/>
+              <label>Email:</label><input type="text" onChange={this.handleChange.bind(this)}  name="email" /><br/>
+              <label>Phone:</label><input type="text" onChange={this.handleChange.bind(this)}  name="phone" /><br/>
               <button>submit</button>
             </form>
           </div>

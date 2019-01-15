@@ -4,21 +4,24 @@ class SignIn extends Component {
     constructor(props){
         super(props);
         this.state = {
-            username : '',
-            activeView: null
+            username : ''
         }
     }
 
     handleSubmit(event){
         event.preventDefault();
-        const url = `http://localhost:3000/users`;
+        const url = `http://localhost:3000/users/${this.state.username}`;
         fetch(url)
         .then(response => response.json())
         .then(data => {
+            if(data === null){
+                {this.props.setView('signup')}
+            }
+            else{
+                {this.props.setUser(data)}
+                {this.props.setView('landing')}
+            }
             console.log(data)
-            this.setState({
-                username: data.username
-            })
         })
         .catch(error => console.log(error))
     }
@@ -35,8 +38,7 @@ class SignIn extends Component {
                 <form onSubmit={this.handleSubmit.bind(this)}>
                     <input type="text" name="username" onChange={this.handelChange.bind(this)}/>
                     <button>Submit</button>
-                    <p>Not Sign up yet ? Sign Up now </p>
-                    {/* <button onClick={this.props.setView('signup')}>Sign Up</button> */}
+                    <p>Not Sign up yet ? <span className="signupSpan" onClick={() => this.props.setView('signup')} >Sign Up now </span> </p>
                 </form>
             </div>
         )
