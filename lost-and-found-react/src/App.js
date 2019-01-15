@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import './App.css'
+import Search from './components/Search';
+import Item from './components/Item';
 
 
- class App extends Component {
+class App extends Component {
   constructor() {
     super();
     this.state = {
