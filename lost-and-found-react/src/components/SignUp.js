@@ -2,22 +2,31 @@ import React, { Component } from 'react';
 
 
 class SignUp extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
+        this.state = {
+          username :'',
+          email : '',
+          phone : ''
+        };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
    
     handleSubmit(event){
         event.preventDefault();
-        const data = new FormData(event.target);
-
+        const data = {
+          name : this.state.name,
+          email : this.state.email,
+          phone : this.state.phone
+        }
+        console.log(data)
         const url = 'http://localhost:3000/users'
         fetch(url, {
             method: 'POST',
             headers: {
               "Content-Type": "application/json"
             },
-            body: data
+            body: JSON.stringify(data)
           })
           .then(response => response.json())
           .then(data => {
@@ -25,14 +34,18 @@ class SignUp extends Component {
             console.log("Success"); 
           })
     }
+
+   handelChange(event) {
+      this.setState({[event.target.name]: event.target.value});  
+  }
    
     render(){
         return(
             <div>
-            <form className="show-form" onSubmit={this.handleSubmit()}>
-            <label>Name:</label><input type="text"  name="name" /><br/>
-              <label>Email:</label><input type="text" name="email" /><br/>
-              <label>Phone:</label><input type="text" name="phone" /><br/>
+            <form onSubmit={this.handleSubmit()}>
+            <label>Name:</label><input type="text" onChange={this.handelChange()} name="name" /><br/>
+              <label>Email:</label><input type="text" onChange={this.handelChange()} name="email" /><br/>
+              <label>Phone:</label><input type="text" onChange={this.handelChange()} name="phone" /><br/>
               <button>submit</button>
             </form>
           </div>
@@ -40,3 +53,4 @@ class SignUp extends Component {
     }
 }       
 export default SignUp;
+
