@@ -2,6 +2,10 @@
   display: flex;
   justify-content: space-around;
 }
+.mainHeading{
+  cursor: pointer;
+}
+
 .header > h1{
   width: 50%;
 }
@@ -218,4 +222,8 @@ footer .small-button.medium {
   to {
     text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.55);
   }
+}
+
+.signupSpan{
+  cursor: pointer;
 }
