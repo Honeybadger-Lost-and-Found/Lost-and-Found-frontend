@@ -14,7 +14,7 @@ class Search extends Component {
 
 
   componentDidMount() {
-    const url = ('http://localhost:3001/items')
+    const url = ('http://localhost:3000/items')
     fetch(url)
       .then(response => response.json())
       .then(data => {
