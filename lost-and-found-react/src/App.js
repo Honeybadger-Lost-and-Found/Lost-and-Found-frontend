@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-// import Notifications, { notify } from 'react-notify-toast'
+import Notifications, { notify } from 'react-notify-toast'
 import Spinner from './components/Spinner'
 import Images from './components/Images'
 import Buttons from './components/Buttons'
 import WakeUp from './components/WakeUp'
 import Footer from './components/Footer'
 import { API_URL } from './config'
-import Items from './components/Item'
+import Item from './components/Item'
 import './App.css'
 
 const toastColor = { 
@@ -19,7 +19,8 @@ export default class App extends Component {
   state = {
     loading: true,
     uploading: false,
-    images: []
+    images: [],
+    items : []
   }
 
   componentDidMount() {
@@ -102,7 +103,12 @@ export default class App extends Component {
     this.toast('Oops, something went wrong', 'custom', 2000, toastColor)
     this.setState({ images: this.filter(id) })
   }
-  
+
+  renderItems(){
+    return this.state.items.map(item => {
+      return <Item key={item.id} item={item}/>
+    })  
+  }
   render() {
     const { loading, uploading, images } = this.state
     
@@ -121,13 +127,15 @@ export default class App extends Component {
         default:
           return <Buttons onChange={this.onChange} />
       }
+      
+      
     }
 
     return (
       <div className='container'>
         <Notifications />
-
-        {/* <Items items={[{name: "Hi"}]} /> */}
+        {this.renderItems()}
+        
         <div className='buttons'>
           {content()}
         </div> 
