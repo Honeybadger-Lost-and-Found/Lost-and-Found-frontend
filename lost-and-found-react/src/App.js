@@ -1,16 +1,21 @@
 import React, { Component } from 'react'
 import './App.css'
 import Search from './components/Search';
-import Item from './components/Item';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
+import MyItems from './components/MyItems'
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       activeView: "landing",
-      user: null,
+      user: {
+        id: 1,
+        username: "Ahmad",
+        phone: "05467990",
+        email: "abcd@hotmail.com"
+      },
       currentItem: null
     }
   }
@@ -71,9 +76,9 @@ class App extends Component {
     }
     else if (this.state.activeView === "myitems") {
       return (
-        <div> my items placeholder</div>
-        // <MyItems user={this.state.user}
-                    // setView={this.setView.bind(this)} />
+        // <div> my items placeholder</div>
+        <MyItems user={this.state.user}
+                 setView={this.setView.bind(this)} />
       )
     }
     else if (this.state.activeView === "itemshow") {
