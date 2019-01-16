@@ -55,15 +55,15 @@ constructor(props){
         return(<div className="form">
         <h3>Lost/Found Somthing?</h3>
         <form>
-        <label>Item Name: </label><input type="text" onChange={this.handleChange.bind(this)} name="name" /><br/>
+        <label>Item Name: </label><input type="text"  onChange={this.handelChange.bind(this)} name="name" /><br/>
         <label>Type: </label><select>
-        <option value='found' onChange={this.handleChange.bind(this)} >Found</option>
-        <option value='lost'  onChange={this.handleChange.bind(this)} >Lost</option>
+        <option value='found' onChange={this.handelChange.bind(this)} >Found</option>
+        <option value='lost' onChange={this.handelChange.bind(this)} >Lost</option>
         </select><br/>
-        <label>Image: </label><input type="text" onChange={this.handleChange.bind(this)}  name="imageUrl" /><br/>
-        <label>Latitude: </label><input type="number" onChange={this.handleChange.bind(this)} name="lat" /><br/>
-        <label>Longitude: </label><input type="number" onChange={this.handleChange.bind(this)}  name="lon" /><br/>
-        <label>Added By: </label><input type="text" onChange={this.handleChange.bind(this)}  name="addedBy" /><br/>
+        <label>Image: </label><input type="text" onChange={this.handelChange.bind(this)}   name="imageUrl" /><br/>
+        <label>Latitude: </label><input type="number" onChange={this.handelChange.bind(this)}  name="lat" /><br/>
+        <label>Longitude: </label><input type="number" onChange={this.handelChange.bind(this)}   name="lon" /><br/>
+        <label>Added By: </label><input type="text" onChange={this.handelChange.bind(this)}   name="addedBy" /><br/>
         </form>
         </div>)
     }
