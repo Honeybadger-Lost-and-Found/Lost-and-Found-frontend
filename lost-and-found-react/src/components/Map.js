@@ -18,24 +18,28 @@ class Map extends Component {
   render() {
 
     return (
-      <MapBox
-        style="mapbox://styles/mapbox/streets-v9"
-        containerStyle={{
-          height: "50vh",
-          width: "50vw"
-        }}
-        center={[this.state.center.lng, this.state.center.lat]}
-        onMove={(event) => {
-          this.setState({ center: event.transform.center }, console.log(this.state.center))
-          // console.log(event.transform.center);
-        }}>
-        <Layer
-          type="symbol"
-          id="marker"
-          layout={{ "icon-image": "harbor-15" }}>
-          <Feature coordinates={[this.state.center.lng, this.state.center.lat]} />
-        </Layer>
-      </MapBox>
+      <div className="mapContainer">
+        <MapBox
+          style="mapbox://styles/mapbox/streets-v9"
+          containerStyle={{
+            height: "50vh",
+            width: "50vw"
+          }}
+          center={[this.state.center.lng, this.state.center.lat]}
+          onMove={(event) => {
+            this.setState({ center: event.transform.center }, console.log(this.state.center))
+            // console.log(event.transform.center);
+            this.props.setLongitude(event.transform.center.lng);
+            this.props.setLatitude(event.transform.center.lat);
+          }}>
+          <Layer
+            type="symbol"
+            id="marker"
+            layout={{ "icon-image": "harbor-15" }}>
+            <Feature coordinates={[this.state.center.lng, this.state.center.lat]} />
+          </Layer>
+        </MapBox>
+      </div>
 
     )
   }

@@ -77,98 +77,105 @@ class App extends Component {
       return (
         // <div> my items placeholder</div>
         <MyItems user={this.state.user}
-                 setView={this.setView.bind(this)}
-                 setCurrentItem={this.setCurrentItem.bind(this)}
-                 updateItems={this.updateItem.bind(this)}
-                    deleteItems={this.deleteItem.bind(this)}
-                    toggleModal={() => {this.toggleMpodal.bind(this)}}/>
+          setView={this.setView.bind(this)}
+          setCurrentItem={this.setCurrentItem.bind(this)}
+          updateItems={this.updateItem.bind(this)}
+          deleteItems={this.deleteItem.bind(this)}
+          toggleModal={() => { this.toggleMpodal.bind(this) }} />
       )
     }
     else if (this.state.activeView === "itemshow") {
       return (
         // <div>item show placeholder</div>
         <ItemShow setView={this.setView.bind(this)}
-                  currentItem={this.state.currentItem}
-                  user={this.state.user}
-                  deleteItem={this.deleteItem.bind(this)}
-                  updateItem={this.updateItem.bind(this)} />
+          currentItem={this.state.currentItem}
+          user={this.state.user}
+          deleteItem={this.deleteItem.bind(this)}
+          updateItem={this.updateItem.bind(this)} />
       )
     }
     else if (this.state.activeView === "form") {
       return (
         // <div>form placeholder</div>
-        <Form user={this.state.user} />
-        
+        <Form user={this.state.user}
+              setView={this.setView.bind(this)} />
+
       )
     }
   }
-updateItem(item){
-const url = `http://localhost:3000/items/${this.state.currentItem.id}`
-fetch(url,{
-  method:'PUT',
-  headers:{
-    "Content-Type": "application/json"
-  },
-  body:JSON.stringify(item)
-})
-.then(data => {
-  const updateItems=this.state.items.map(item=>{
-    return item.id === data.id ? data: item
-  })
-  console.log('current state:',this.state.items);
-  console.log('new state:',updateItems )
-  this.setState({
-    items: updateItems,
-    activeView: item,
-  })
-})
-.catch(error=>{
-  console.log(error)
-})
-}
-deleteItem(id){
-const url =`http://localhost:3000/items/${this.state.currentItem.id}`;
-fetch(url,{
-  method:'DELETE'
-})
-.then(response=>response.json())
-.then(data =>{
-  const updateItems = this.state.items.filter(item=>item.id !== id)//condition
-this.setState({
-  items:updateItems,
-  currentItem: null //
- })
-})
-.catch(error=>{
-  console.log(error);
 
-})
-}
-toggleMpodal(){
-  this.setState({
-    modal: !this.state.modal
-  })
-}
-handleSubmit(item){
- if( this.state.currentItem) { 
-  this.updateItem(item) 
- } 
-}
+  updateItem(item) {
+    const url = `http://localhost:3000/items/${this.state.currentItem.id}`
+    fetch(url, {
+      method: 'PUT',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(item)
+    })
+      .then(data => {
+        const updateItems = this.state.items.map(item => {
+          return item.id === data.id ? data : item
+        })
+        console.log('current state:', this.state.items);
+        console.log('new state:', updateItems)
+        this.setState({
+          items: updateItems,
+          activeView: item,
+        })
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+
+  deleteItem(id) {
+    const url = `http://localhost:3000/items/${this.state.currentItem.id}`;
+    fetch(url, {
+      method: 'DELETE'
+    })
+      .then(response => response.json())
+      .then(data => {
+        const updateItems = this.state.items.filter(item => item.id !== id)//condition
+        this.setState({
+          items: updateItems,
+          currentItem: null //
+        })
+      })
+      .catch(error => {
+        console.log(error);
+
+      })
+  }
+  toggleModal() {
+    this.setState({
+      modal: !this.state.modal
+    })
+  }
+  handleSubmit(item) {
+    if (this.state.currentItem) {
+      this.updateItem(item)
+    }
+  }
 
   render() {
 
     return (
       <div className="app">
-      {/* <Form/> */}
+        {/* <Form/> */}
         <div className="header">
           <h1 className="mainHeading" onClick={() => this.setView("landing")}>Lost and Found</h1>
           <div className="actionButtons">
-            <button onClick={() => this.setView("search")} className="searchButton">Search</button>
-            {(this.state.user) ? <button onClick={() => this.setView("myitems")} className="myItemsButton">My Items</button>
-              : <button onClick={() => this.setView("signin")} className="loginRegisterButton">Login/Register</button>}
+            <button className="searchButton" onClick={() => this.setView("search")} >Search</button>
+            {(this.state.user) ?
+              <div>
+                <button className="myItemsButton" onClick={() => this.setView("myitems")} >My Items</button>
+                <button className="logoutButton" onClick={() => this.setUser(null)}>Log Out</button>
+              </div>
+              : <button className="loginRegisterButton" onClick={() => this.setView("signin")} >Login/Register</button>}
           </div>
         </div>
-      
+
 
         {this.renderContent()}
       </div>
