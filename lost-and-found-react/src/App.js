@@ -11,12 +11,7 @@ class App extends Component {
     super();
     this.state = {
       activeView: "landing",
-      user: {
-        id: 1,
-        username: "Ahmad",
-        phone: "05467990",
-        email: "abcd@hotmail.com"
-      },
+      user: null,
       currentItem: null
     }
   }
