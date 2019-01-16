@@ -1,16 +1,17 @@
-import React  from "react";
+import React from "react";
 
 
 
-const Item=(props)=>{
+const Item = (props) => {
 
-    return(
+    return (
         <div className="item">
-        <p className="p">{props.item.name}</p>
-        <img className="img" src={props.item.imageurl} alt=""/>
-        <p className="p">{props.item.addedby}</p>
-        <p className="p">{props.item.addeddate}</p>
+            <p className="p">{props.item.name}</p>
+            <img className="img" src={props.item.imageurl} alt="" />
+            <p className="p">{props.item.addedby}</p>
+            <p className="p">{props.item.addeddate}</p>
         
+           
         </div>
     )
 }

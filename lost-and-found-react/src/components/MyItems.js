@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Item from './Item';
+
 class MyItems extends Component {
     constructor() {
         super();
@@ -15,18 +16,25 @@ class MyItems extends Component {
                 console.log("DATAAAA", data)
                 this.setState({
                     myItems: data
-                })
+                }, function(){console.log(this.state.myItems)})
             })
             .catch(error => {
                 console.log(error)
             })
     }
     renderItems() {
+
         return this.state.myItems.map((item, index) => {
             return (
-                <div key={index}>
-                    <Item item={item} />
+                <div key={index} onClick={() =>{
+                    console.log("THE ITEM: ", item);
+                    this.props.setCurrentItem(item);
+                    this.props.setView("itemshow");
+                }}>
+                <Item item={item} user={this.props.user} />
                 </div>
+
+
             )
         })
     }
@@ -34,10 +42,20 @@ class MyItems extends Component {
     render() {
         return (
             <div className="my-items">
-                {(this.state.myItems.length === 0) ? <p>No Items Found.</p> 
-                : this.renderItems()}
+                {(this.state.myItems.length === 0) ? <p>No Items Found.</p>
+                    : this.renderItems()}
+                {/* <div>
+                    <Item
+                    updateItems={this.props.updateItems.bind(this)}
+                    deleteItems={this.props.deleteItems.bind(this)}
+                    toggleModal={this.props.toggleModal.bind(this)}
+                    />
+                </div> */}
             </div>
+
+
         )
+
     }
 }
 
