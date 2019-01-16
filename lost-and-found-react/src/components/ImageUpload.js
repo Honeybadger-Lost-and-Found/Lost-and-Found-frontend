@@ -4,7 +4,6 @@ import Spinner from './imageUpload/Spinner'
 import Images from './imageUpload/Images'
 import Buttons from './imageUpload/Buttons'
 import WakeUp from './imageUpload/WakeUp'
-import Footer from './imageUpload/Footer'
 
 import { API_URL } from '../config'
 
@@ -13,7 +12,7 @@ const toastColor = {
     text: '#fff'
 }
 
-class Form extends Component {
+class ImageUpload extends Component {
     constructor() {
         super();
         this.state = {
@@ -35,6 +34,12 @@ class Form extends Component {
     }
 
     toast = notify.createShowQueue()
+
+    //my work
+    handleUploadPhoto (){
+  const url = 'http://localhost:3000/items';
+  fetch(url)
+}
 
   onChange = e => {
     const errs = [] 
@@ -82,6 +87,9 @@ class Form extends Component {
         uploading: false, 
         images
       })
+      console.log(images);
+      this.props.setImgUrl(images[0].url);
+      // take images and send to your api
     })
     .catch(err => {
       err.json().then(e => {
@@ -130,7 +138,7 @@ class Form extends Component {
         <div className='buttons'>
           {content()}
         </div> 
-        <Footer />
+
       </div>
     )
   }

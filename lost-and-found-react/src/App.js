@@ -1,16 +1,22 @@
 import React, { Component } from 'react'
 import './App.css'
 import Search from './components/Search';
-import Item from './components/Item';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
+import MyItems from './components/MyItems'
 import Form from './components/Form';
+
 class App extends Component {
   constructor() {
     super();
     this.state = {
       activeView: "landing",
-      user: null,
+      user: {
+        id: 1,
+        username: "Ahmad",
+        phone: "05467990",
+        email: "abcd@hotmail.com"
+      },
       currentItem: null
     }
   }
@@ -71,9 +77,9 @@ class App extends Component {
     }
     else if (this.state.activeView === "myitems") {
       return (
-        <div> my items placeholder</div>
-        // <MyItems user={this.state.user}
-                    // setView={this.setView.bind(this)} />
+        // <div> my items placeholder</div>
+        <MyItems user={this.state.user}
+                 setView={this.setView.bind(this)} />
       )
     }
     else if (this.state.activeView === "itemshow") {
@@ -85,8 +91,8 @@ class App extends Component {
     }
     else if(this.state.activeView === "form"){
       return (
-        <div>form placeholder</div>
-        // <Form user={this.state.user} />
+        // <div>form placeholder</div>
+        <Form user={this.state.user} />
       )
     }
   }
@@ -95,7 +101,7 @@ class App extends Component {
 
     return (
       <div className="app">
-      <Form/>
+      {/* <Form/> */}
         <div className="header">
           <h1 className="mainHeading" onClick={() => this.setView("landing")}>Lost and Found</h1>
           <div className="actionButtons">
