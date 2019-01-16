@@ -3,6 +3,7 @@ import './App.css'
 import Search from './components/Search';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
+import Form from './components/Form';
 import MyItems from './components/MyItems'
 
 class App extends Component {
@@ -85,8 +86,8 @@ class App extends Component {
     }
     else if (this.state.activeView === "form") {
       return (
-        <div>form placeholder</div>
-        // <Form user={this.state.user} />
+        // <div>form placeholder</div>
+        <Form user={this.state.user} />
       )
     }
   }
@@ -94,7 +95,6 @@ class App extends Component {
   render() {
 
     return (
-
       <div className="app">
         <div className="header">
           <h1 className="mainHeading" onClick={() => this.setView("landing")}>Lost and Found</h1>

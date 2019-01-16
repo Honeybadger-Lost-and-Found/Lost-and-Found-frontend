@@ -137,4 +137,4 @@ class Form extends Component {
 
 }
 
-export default Form;
+export default ImageUpload;
