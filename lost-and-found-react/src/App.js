@@ -3,8 +3,11 @@ import './App.css'
 import Search from './components/Search';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
-import MyItems from './components/MyItems'
+import MyItems from './components/MyItems';
+import Item from './components/Item';
+import ItemShow from './components/ItemShow';
 import Form from './components/Form';
+
 
 class App extends Component {
   constructor() {
@@ -65,32 +68,92 @@ class App extends Component {
     }
     else if (this.state.activeView === "signin") {
       return (
-        <div>sign in placeholder</div>
-        // <SignIn setView={this.setView.bind(this)}
-        //   setUser={this.setUser.bind(this)} />
+        // <div>sign in placeholder</div>
+        <SignIn setView={this.setView.bind(this)}
+          setUser={this.setUser.bind(this)} />
       )
     }
     else if (this.state.activeView === "myitems") {
       return (
         // <div> my items placeholder</div>
         <MyItems user={this.state.user}
-                 setView={this.setView.bind(this)} />
+                 setView={this.setView.bind(this)}
+                 setCurrentItem={this.setCurrentItem.bind(this)}
+                 updateItems={this.updateItem.bind(this)}
+                    deleteItems={this.deleteItem.bind(this)}
+                    toggleModal={() => {this.toggleMpodal.bind(this)}}/>
       )
     }
     else if (this.state.activeView === "itemshow") {
       return (
-        <div>item show placeholder</div>
-        // <ItemShow setView={this.setView.bind(this)}
-        //           currentItem={this.state.currentItem} />
+        // <div>item show placeholder</div>
+        <ItemShow setView={this.setView.bind(this)}
+                  currentItem={this.state.currentItem}
+                  user={this.state.user}
+                  deleteItem={this.deleteItem.bind(this)}
+                  updateItem={this.updateItem.bind(this)} />
       )
     }
     else if(this.state.activeView === "form"){
       return (
         // <div>form placeholder</div>
         <Form user={this.state.user} />
+        
       )
     }
   }
+updateItem(item){
+const url = `http://localhost:3000/items/${this.state.currentItem.id}`
+fetch(url,{
+  method:'PUT',
+  headers:{
+    "Content-Type": "application/json"
+  },
+  body:JSON.stringify(item)
+})
+.then(data => {
+  const updateItems=this.state.items.map(item=>{
+    return item.id === data.id ? data: item
+  })
+  console.log('current state:',this.state.items);
+  console.log('new state:',updateItems )
+  this.setState({
+    items: updateItems,
+    activeView: item,
+  })
+})
+.catch(error=>{
+  console.log(error)
+})
+}
+deleteItem(id){
+const url =`http://localhost:3000/items/${this.state.currentItem.id}`;
+fetch(url,{
+  method:'DELETE'
+})
+.then(response=>response.json())
+.then(data =>{
+  const updateItems = this.state.items.filter(item=>item.id !== id)//condition
+this.setState({
+  items:updateItems,
+  currentItem: null //
+ })
+})
+.catch(error=>{
+  console.log(error);
+
+})
+}
+toggleMpodal(){
+  this.setState({
+    modal: !this.state.modal
+  })
+}
+handleSubmit(item){
+ if( this.state.currentItem) { 
+  this.updateItem(item) 
+ } 
+}
 
   render() {
 
@@ -105,6 +168,7 @@ class App extends Component {
               : <button onClick={() => this.setView("signin")} className="loginRegisterButton">Login/Register</button>}
           </div>
         </div>
+      
 
         {this.renderContent()}
       </div>
