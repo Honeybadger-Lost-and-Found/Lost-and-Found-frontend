@@ -6,6 +6,7 @@ import SignIn from './components/SignIn';
 import MyItems from './components/MyItems';
 import Item from './components/Item';
 import ItemShow from './components/ItemShow';
+import Form from './components/Form';
 
 
 class App extends Component {
@@ -13,12 +14,7 @@ class App extends Component {
     super();
     this.state = {
       activeView: "landing",
-      user: {
-        id: 1,
-        username: "Ahmad",
-        phone: "05467990",
-        email: "abcd@hotmail.com"
-      },
+      user: null,
       currentItem: null
     }
   }
@@ -72,9 +68,9 @@ class App extends Component {
     }
     else if (this.state.activeView === "signin") {
       return (
-        <div>sign in placeholder</div>
-        // <SignIn setView={this.setView.bind(this)}
-        //   setUser={this.setUser.bind(this)} />
+        // <div>sign in placeholder</div>
+        <SignIn setView={this.setView.bind(this)}
+          setUser={this.setUser.bind(this)} />
       )
     }
     else if (this.state.activeView === "myitems") {
@@ -93,14 +89,16 @@ class App extends Component {
         // <div>item show placeholder</div>
         <ItemShow setView={this.setView.bind(this)}
                   currentItem={this.state.currentItem}
+                  user={this.state.user}
                   deleteItem={this.deleteItem.bind(this)}
                   updateItem={this.updateItem.bind(this)} />
       )
     }
     else if(this.state.activeView === "form"){
       return (
-        <div>form placeholder</div>
-        // <Form user={this.state.user} />
+        // <div>form placeholder</div>
+        <Form user={this.state.user} />
+        
       )
     }
   }
@@ -160,8 +158,8 @@ handleSubmit(item){
   render() {
 
     return (
-
       <div className="app">
+      {/* <Form/> */}
         <div className="header">
           <h1 className="mainHeading" onClick={() => this.setView("landing")}>Lost and Found</h1>
           <div className="actionButtons">

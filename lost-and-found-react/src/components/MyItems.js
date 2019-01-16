@@ -27,6 +27,7 @@ class MyItems extends Component {
         return this.state.myItems.map((item, index) => {
             return (
                 <div key={index} onClick={() =>{
+                    console.log("THE ITEM: ", item);
                     this.props.setCurrentItem(item);
                     this.props.setView("itemshow");
                 }}>
