@@ -3,8 +3,8 @@ import './App.css'
 import Search from './components/Search';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
-import Form from './components/Form';
 import MyItems from './components/MyItems'
+import Form from './components/Form';
 
 class App extends Component {
   constructor() {
@@ -96,6 +96,7 @@ class App extends Component {
 
     return (
       <div className="app">
+      {/* <Form/> */}
         <div className="header">
           <h1 className="mainHeading" onClick={() => this.setView("landing")}>Lost and Found</h1>
           <div className="actionButtons">
