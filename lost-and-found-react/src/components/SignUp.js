@@ -30,10 +30,12 @@ class SignUp extends Component {
             },
             body: JSON.stringify(data)
           })
-          // .then(response => response.json())
+          .then(response => response.json())
           .then(data => {
-            console.log(data)
-            console.log("Success"); 
+            // console.log(data);
+            console.log("SignUp successful for: ", data);
+            this.props.setUser(data);
+            this.props.setView("landing");
           })
           .catch(error => {
             console.log(error);

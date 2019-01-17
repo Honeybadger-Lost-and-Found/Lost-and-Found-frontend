@@ -4,6 +4,7 @@ class ItemShow extends Component {
     constructor() {
         super();
         this.state = {
+            modal: false
             // name: props.setCurrentItem ? props.setCurrentItem.name : '',
             // type: props.setCurrentItem ? props.setCurrentItem.type : '',
             // imageUrl: props.setCurrentItem ? props.setCurrentItem.imageUrl : '',
@@ -31,6 +32,10 @@ class ItemShow extends Component {
         this.props.handleSubmit(this.state)
     }
 
+    toggleModal() {
+        this.setState({ modal: !this.state.modal });
+    }
+
 
     render() {
         return (
@@ -44,7 +49,7 @@ class ItemShow extends Component {
                 {/* <Map lon={this.props.item.lon}
                     lat={this.props.item.lat} /> */}
 
-                
+
                 {/* <form className="show-form"onSubmit={this.handleSubmit.bind(this)}/>
 
             <label>Name:</label><input type="text" value={this.state.name} name="name" onChange={this.handelChange.bind(this)}/><br/>
@@ -55,10 +60,14 @@ class ItemShow extends Component {
             <label>Added by:</label><input type="text" value={this.state.addedBy} name="addedBy" onChange={this.handelChange.bind(this)}/><br/>
             <label>Added date:</label><input type="text" value={this.state.addedDate} name="addedDate" onChange={this.handelChange.bind(this)} /><br/> */}
 
-                {(this.props.user.username === this.props.currentItem.addedBy) ? <div className="buttons">
-                    <button onClick={() => { this.props.deleteItems() }}>Delete</button>
-                    <button onClick={() => { this.props.toggleMpodal() }}>Edit</button>
-                </div>
+                {(this.props.user.username === this.props.currentItem.addedby) ?
+                    <div className="buttons">
+                        <button onClick={() => { 
+                            this.props.deleteItem();
+                            this.props.setView("myitems");
+                             }}>Delete</button>
+                        <button onClick={() => { this.toggleModal() }}>Edit</button>
+                    </div>
                     : ''}
 
 
