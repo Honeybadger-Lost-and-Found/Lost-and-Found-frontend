@@ -10,13 +10,15 @@ const Item = (props) => {
             <img className="img" src={props.item.imageurl} alt="" />
             <p className="p">{props.item.addedby}</p>
             <p className="p">{props.item.addeddate}</p>
-        
+           
+   
            
         </div>
     )
 }
 
 export default Item;
+
 
 
 

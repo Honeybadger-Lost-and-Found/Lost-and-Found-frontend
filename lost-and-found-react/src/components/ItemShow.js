@@ -12,7 +12,9 @@ class ItemShow extends Component {
             // addedBy: props.setCurrentItem ? props.setCurrentItem.addedBy : '',
             // addedDate: props.setCurrentItem ? props.setCurrentItem.addedDate : '',
             // id: props.setCurrentItem ? props.setCurrentItem.id : null,
+       
         }
+
     }
 
     handelChange(event) {
@@ -40,7 +42,7 @@ class ItemShow extends Component {
                 <p>Description: {this.props.currentItem.description}</p>
                 <p>Type: {this.props.currentItem.type}</p>
                 <p>Added By:{this.props.currentItem.addedBy}</p>
-                <p>Added on:{this.props.currentItem.addedDate}</p>
+                {/* <p>Added on:{this.props.currentItem.addedDate}</p> */}
                 {/* <Map lon={this.props.item.lon}
                     lat={this.props.item.lat} /> */}
 
@@ -55,14 +57,14 @@ class ItemShow extends Component {
             <label>Added by:</label><input type="text" value={this.state.addedBy} name="addedBy" onChange={this.handelChange.bind(this)}/><br/>
             <label>Added date:</label><input type="text" value={this.state.addedDate} name="addedDate" onChange={this.handelChange.bind(this)} /><br/> */}
 
-                {(this.props.user.username === this.props.currentItem.addedBy) ? <div className="buttons">
-                    <button onClick={() => { this.props.deleteItems() }}>Delete</button>
-                    <button onClick={() => { this.props.toggleMpodal() }}>Edit</button>
+                {/* {(this.props.user.username === this.props.currentItem.addedBy) ? <div className="buttons"> */}
+                    <button onClick={() => { this.props.deleteItem() }}>Delete</button>
+                    <button onClick={() => { this.props.toggleModal() }}>Edit</button>
                 </div>
-                    : ''}
+                    // : ''}
 
 
-            </div>
+            //  </div>
         )
     }
 }

@@ -46,8 +46,8 @@ class MyItems extends Component {
                     : this.renderItems()}
                 {/* <div>
                     <Item
-                    updateItems={this.props.updateItems.bind(this)}
-                    deleteItems={this.props.deleteItems.bind(this)}
+                    updateItem={this.props.updateItem.bind(this)}
+                    deleteItem={this.props.deleteItem.bind(this)}
                     toggleModal={this.props.toggleModal.bind(this)}
                     />
                 </div> */}

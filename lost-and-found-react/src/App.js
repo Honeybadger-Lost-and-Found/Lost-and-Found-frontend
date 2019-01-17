@@ -79,9 +79,9 @@ class App extends Component {
         <MyItems user={this.state.user}
           setView={this.setView.bind(this)}
           setCurrentItem={this.setCurrentItem.bind(this)}
-          updateItems={this.updateItem.bind(this)}
-          deleteItems={this.deleteItem.bind(this)}
-          toggleModal={() => { this.toggleMpodal.bind(this) }} />
+          updateItem={this.updateItem.bind(this)}
+          deleteItem={this.deleteItem.bind(this)}
+          toggleModal={() => { this.toggleModal.bind(this) }} />
       )
     }
     else if (this.state.activeView === "itemshow") {
@@ -114,13 +114,13 @@ class App extends Component {
       body: JSON.stringify(item)
     })
       .then(data => {
-        const updateItems = this.state.items.map(item => {
+        const updateItem = this.state.items.map(item => {
           return item.id === data.id ? data : item
         })
         console.log('current state:', this.state.items);
-        console.log('new state:', updateItems)
+        console.log('new state:', updateItem)
         this.setState({
-          items: updateItems,
+          items: updateItem,
           activeView: item,
         })
       })
@@ -137,9 +137,11 @@ class App extends Component {
       .then(response => response.json())
       .then(data => {
         const updateItems = this.state.items.filter(item => item.id !== id)//condition
+        console.log(data);
         this.setState({
           items: updateItems,
           currentItem: null //
+
         })
       })
       .catch(error => {
