@@ -41,7 +41,7 @@ class ItemShow extends Component {
         return (
             <div className="showItem">
                 <h2>{this.props.currentItem.name}</h2>
-                <img src={this.props.currentItem.imageUrl} alt="Item_Image" />
+                <img src={this.props.currentItem.imageurl} alt="Item_Image" />
                 <p>Description: {this.props.currentItem.description}</p>
                 <p>Type: {this.props.currentItem.type}</p>
                 <p>Added By:{this.props.currentItem.addedby}</p>
