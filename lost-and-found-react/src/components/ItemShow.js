@@ -36,11 +36,11 @@ class ItemShow extends Component {
         return (
             <div className="showItem">
                 <h2>{this.props.currentItem.name}</h2>
-                <img src={this.props.currentItem.imageUrl} alt="Item_Image" />
+                <img src={this.props.currentItem.imageurl} alt="Item_Image" />
                 <p>Description: {this.props.currentItem.description}</p>
                 <p>Type: {this.props.currentItem.type}</p>
-                <p>Added By:{this.props.currentItem.addedBy}</p>
-                <p>Added on:{this.props.currentItem.addedDate}</p>
+                <p>Added By:{this.props.currentItem.addedby}</p>
+                <p>Added on:{this.props.currentItem.addeddate}</p>
                 {/* <Map lon={this.props.item.lon}
                     lat={this.props.item.lat} /> */}
 
