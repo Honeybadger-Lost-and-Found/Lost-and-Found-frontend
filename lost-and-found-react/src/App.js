@@ -4,10 +4,9 @@ import Search from './components/Search';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import MyItems from './components/MyItems';
-import Item from './components/Item';
 import ItemShow from './components/ItemShow';
 import Form from './components/Form';
-
+import Item from './components/Item';
 
 class App extends Component {
   constructor() {
@@ -15,7 +14,9 @@ class App extends Component {
     this.state = {
       activeView: "landing",
       user: null,
-      currentItem: null
+      currentItem: null,
+      myItems:[],
+      modal:false,
     }
   }
 
@@ -98,14 +99,36 @@ class App extends Component {
       return (
         // <div>form placeholder</div>
         <Form user={this.state.user}
-              setView={this.setView.bind(this)} />
+          setView={this.setView.bind(this)} />
 
       )
     }
   }
-
+createItem(item){
+  const url= `http://localhost:3000/items/${this.state.currentItem.id}`
+  fetch(url,{
+    method: 'POST',
+       headers: {
+         "Content-Type": "application/json"
+       },
+       body: JSON.stringify(item)
+  })
+  .then(response=>response.json())
+  .then(data=>{
+    console.log('DATAA',data);
+    const updateItems=this.state.myItem.concat([data]);
+    console.log(updateItems)
+    this.setState({
+      myItems:updateItems,
+      moda:false
+    })
+  })
+  .catch(error=>{
+console.log(error)
+  })
+}
   updateItem(item) {
-    const url = `http://localhost:3000/items/${this.state.currentItem.id}`
+    const url = `http://localhost:3000/items/${item.id}`
     fetch(url, {
       method: 'PUT',
       headers: {
@@ -122,6 +145,7 @@ class App extends Component {
         this.setState({
           items: updateItem,
           activeView: item,
+          moda:false,
         })
       })
       .catch(error => {
@@ -132,7 +156,7 @@ class App extends Component {
   deleteItem(id) {
     const url = `http://localhost:3000/items/${this.state.currentItem.id}`;
     fetch(url, {
-      method: 'DELETE'
+      method: 'DELETE',
     })
       .then(response => response.json())
       .then(data => {
@@ -157,32 +181,45 @@ class App extends Component {
   handleSubmit(item) {
     if (this.state.currentItem) {
       this.updateItem(item)
+    }else{
+      this.createItem(item)
+    };
+    
     }
   }
 
+
   render() {
-
-    return (
+    return(
       <div className="app">
-        {/* <Form/> */}
-        <div className="header">
-          <h1 className="mainHeading" onClick={() => this.setView("landing")}>Lost and Found</h1>
-          <div className="actionButtons">
-            <button className="searchButton" onClick={() => this.setView("search")} >Search</button>
-            {(this.state.user) ?
-              <div>
-                <button className="myItemsButton" onClick={() => this.setView("myitems")} >My Items</button>
-                <button className="logoutButton" onClick={() => this.setUser(null)}>Log Out</button>
-              </div>
-              : <button className="loginRegisterButton" onClick={() => this.setView("signin")} >Login/Register</button>}
-          </div>
+      
+      <div className="header">
+        <h1 className="mainHeading" onClick={() => this.setView("landing")}>Lost and Found</h1>
+        <div className="actionButtons">
+          <button className="searchButton" onClick={() => this.setView("search")} >Search</button>
+          
+          {(this.state.user) ?
+            <div>
+              <button className="postButton" onClick={() => {
+                if (this.state.user) this.setView("form")
+                else this.setView("signin")
+              }}
+              >Post an Item!</button>
+              <button className="myItemsButton" onClick={() => this.setView("myitems")} >My Items</button>
+              <button className="logoutButton" onClick={() => this.setUser(null)}>Log Out</button>
+            </div>
+            : <button className="loginRegisterButton" onClick={() => this.setView("signin")} >Login/Register</button>}
         </div>
-
-
-        {this.renderContent()}
       </div>
+
+
+      {this.renderContent()}
+    </div>
+  
     )
-  }
-}
+           
+            }
+
+
 
 export default App;

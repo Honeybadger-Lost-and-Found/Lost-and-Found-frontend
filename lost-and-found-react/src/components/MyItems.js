@@ -44,13 +44,13 @@ class MyItems extends Component {
             <div className="my-items">
                 {(this.state.myItems.length === 0) ? <p>No Items Found.</p>
                     : this.renderItems()}
-                {/* <div>
+                <div>
                     <Item
                     updateItem={this.props.updateItem.bind(this)}
                     deleteItem={this.props.deleteItem.bind(this)}
                     toggleModal={this.props.toggleModal.bind(this)}
                     />
-                </div> */}
+                </div>
             </div>
 
 
