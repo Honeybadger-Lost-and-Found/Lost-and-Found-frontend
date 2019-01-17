@@ -64,7 +64,7 @@ class ItemShow extends Component {
                     <div className="buttons">
                         <button onClick={() => { 
                             this.props.deleteItem();
-                            this.props.setView("myitems");
+                            this.props.setView("landing");
                              }}>Delete</button>
                         <button onClick={() => { this.toggleModal() }}>Edit</button>
                     </div>
