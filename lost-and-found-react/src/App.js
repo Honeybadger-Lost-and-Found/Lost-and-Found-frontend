@@ -15,7 +15,9 @@ class App extends Component {
     this.state = {
       activeView: "landing",
       user: null,
-      currentItem: null
+      currentItem: null,
+      myItems:[],
+      formType: "new"
     }
   }
 
@@ -28,6 +30,7 @@ class App extends Component {
   }
 
   setCurrentItem(item) {
+    console.log("step 2" , "set current item" , item)
     this.setState({ currentItem: item });
   }
 
@@ -47,6 +50,8 @@ class App extends Component {
             <button className="landingButton" onClick={() => {
               if (this.state.user) this.setView("form")
               else this.setView("signin")
+              this.setFormType("new")
+              this.setCurrentItem({});
             }}
             >Post an Item!</button>
           </div>
@@ -91,20 +96,30 @@ class App extends Component {
           currentItem={this.state.currentItem}
           user={this.state.user}
           deleteItem={this.deleteItem.bind(this)}
-          updateItem={this.updateItem.bind(this)} />
+          updateItem={this.updateItem.bind(this)} 
+          setFormType={this.setFormType.bind(this)}
+          
+          />
       )
     }
     else if (this.state.activeView === "form") {
       return (
         // <div>form placeholder</div>
-        <Form user={this.state.user}
-          setView={this.setView.bind(this)} />
-
+        <Form user={this.state.user} formType={this.state.formType} item={this.state.currentItem}
+          setView={this.setView.bind(this)} setFormType={this.setFormType.bind(this)}
+          setCurrentItem={this.setCurrentItem.bind(this)} />
       )
     }
   }
 
+  setFormType(type){
+    this.setState({ formType: type})
+
+
+  }
+
   updateItem(item) {
+    console.log("updating item \n\n\n\n\n")
     const url = `http://localhost:3000/items/${this.state.currentItem.id}`
     fetch(url, {
       method: 'PUT',
@@ -114,20 +129,12 @@ class App extends Component {
       body: JSON.stringify(item)
     })
       .then(data => {
-        const updateItems = this.state.items.map(item => {
-          return item.id === data.id ? data : item
-        })
-        console.log('current state:', this.state.items);
-        console.log('new state:', updateItems)
         this.setState({
-          items: updateItems,
-          activeView: item,
+          myItems: data
         })
-      })
-      .catch(error => {
-        console.log(error)
-      })
-  }
+      }
+      )}
+  
 
   deleteItem(id) {
     const url = `http://localhost:3000/items/${this.state.currentItem.id}`;
@@ -173,6 +180,8 @@ class App extends Component {
                 <button className="postButton" onClick={() => {
                   if (this.state.user) this.setView("form")
                   else this.setView("signin")
+                  this.setFormType("new");
+                  this.setCurrentItem({});
                 }}
                 >Post an Item!</button>
                 <button className="myItemsButton" onClick={() => this.setView("myitems")} >My Items</button>
