@@ -98,7 +98,7 @@ class App extends Component {
       return (
         // <div>form placeholder</div>
         <Form user={this.state.user}
-              setView={this.setView.bind(this)} />
+          setView={this.setView.bind(this)} />
 
       )
     }
@@ -167,8 +167,14 @@ class App extends Component {
           <h1 className="mainHeading" onClick={() => this.setView("landing")}>Lost and Found</h1>
           <div className="actionButtons">
             <button className="searchButton" onClick={() => this.setView("search")} >Search</button>
+            
             {(this.state.user) ?
               <div>
+                <button className="postButton" onClick={() => {
+                  if (this.state.user) this.setView("form")
+                  else this.setView("signin")
+                }}
+                >Post an Item!</button>
                 <button className="myItemsButton" onClick={() => this.setView("myitems")} >My Items</button>
                 <button className="logoutButton" onClick={() => this.setUser(null)}>Log Out</button>
               </div>

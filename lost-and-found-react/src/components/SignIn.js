@@ -21,7 +21,7 @@ class SignIn extends Component {
                 this.props.setUser(data)
                 this.props.setView('landing')
             }
-            console.log(data)
+            console.log(data);
         })
         .catch(error => console.log(error))
     }

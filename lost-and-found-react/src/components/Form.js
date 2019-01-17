@@ -56,7 +56,7 @@ class Form extends Component {
             .then(data => {
                 console.log(data)
                 console.log('Success')
-                this.props.setView('landing');
+                this.props.setView('myitems');
             })
             .catch(error => {
                 console.log(error)
