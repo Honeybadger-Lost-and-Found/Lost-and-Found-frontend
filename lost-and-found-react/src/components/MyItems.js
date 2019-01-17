@@ -25,9 +25,10 @@ class MyItems extends Component {
     renderItems() {
 
         return this.state.myItems.map((item, index) => {
+            console.log("THE ITEM: ", item);
             return (
                 <div key={index} onClick={() =>{
-                    console.log("THE ITEM: ", item);
+                   
                     this.props.setCurrentItem(item);
                     this.props.setView("itemshow");
                 }}>
@@ -46,7 +47,7 @@ class MyItems extends Component {
                 {(this.state.myItems.length === 0) ? <p>No Items Found.</p>
                     : this.renderItems()}
                 {/* <div>
-                    <Item
+                    // <Item
                     updateItems={this.props.updateItems.bind(this)}
                     deleteItems={this.props.deleteItems.bind(this)}
                     toggleModal={this.props.toggleModal.bind(this)}
