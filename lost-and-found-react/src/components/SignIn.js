@@ -15,11 +15,11 @@ class SignIn extends Component {
         .then(response => response.json())
         .then(data => {
             if(data === null){
-                {this.props.setView('signup')}
+                this.props.setView('signup')
             }
             else{
-                {this.props.setUser(data)}
-                {this.props.setView('landing')}
+                this.props.setUser(data)
+                this.props.setView('landing')
             }
             console.log(data)
         })
@@ -38,7 +38,7 @@ class SignIn extends Component {
                 <form onSubmit={this.handleSubmit.bind(this)}>
                     <input type="text" name="username" onChange={this.handelChange.bind(this)}/>
                     <button>Submit</button>
-                    <p>Not Sign up yet ? <span className="signupSpan" onClick={() => this.props.setView('signup')} >Sign Up now </span> </p>
+                    <p>No account? <span className="signupSpan" onClick={() => this.props.setView('signup')} >Sign Up now! </span> </p>
                 </form>
             </div>
         )
