@@ -25,9 +25,10 @@ class MyItems extends Component {
     renderItems() {
 
         return this.state.myItems.map((item, index) => {
+            console.log("THE ITEM: ", item);
             return (
                 <div key={index} onClick={() =>{
-                    console.log("THE ITEM: ", item);
+                   
                     this.props.setCurrentItem(item);
                     this.props.setView("itemshow");
                 }}>
@@ -38,16 +39,17 @@ class MyItems extends Component {
             )
         })
     }
+    
 
     render() {
         return (
             <div className="my-items">
                 {(this.state.myItems.length === 0) ? <p>No Items Found.</p>
                     : this.renderItems()}
-                <div>
-                    <Item
-                    updateItem={this.props.updateItem.bind(this)}
-                    deleteItem={this.props.deleteItem.bind(this)}
+                {/* <div>
+                    // <Item
+                    updateItems={this.props.updateItems.bind(this)}
+                    deleteItems={this.props.deleteItems.bind(this)}
                     toggleModal={this.props.toggleModal.bind(this)}
                     />
                 </div>

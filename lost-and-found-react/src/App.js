@@ -16,7 +16,7 @@ class App extends Component {
       user: null,
       currentItem: null,
       myItems:[],
-      modal:false,
+      formType: "new"
     }
   }
 
@@ -29,6 +29,7 @@ class App extends Component {
   }
 
   setCurrentItem(item) {
+    console.log("step 2" , "set current item" , item)
     this.setState({ currentItem: item });
   }
 
@@ -48,6 +49,8 @@ class App extends Component {
             <button className="landingButton" onClick={() => {
               if (this.state.user) this.setView("form")
               else this.setView("signin")
+              this.setFormType("new")
+              this.setCurrentItem({});
             }}
             >Post an Item!</button>
           </div>
@@ -92,43 +95,31 @@ class App extends Component {
           currentItem={this.state.currentItem}
           user={this.state.user}
           deleteItem={this.deleteItem.bind(this)}
-          updateItem={this.updateItem.bind(this)} />
+          updateItem={this.updateItem.bind(this)} 
+          setFormType={this.setFormType.bind(this)}
+          
+          />
       )
     }
     else if (this.state.activeView === "form") {
       return (
         // <div>form placeholder</div>
-        <Form user={this.state.user}
-          setView={this.setView.bind(this)} />
-
+        <Form user={this.state.user} formType={this.state.formType} item={this.state.currentItem}
+          setView={this.setView.bind(this)} setFormType={this.setFormType.bind(this)}
+          setCurrentItem={this.setCurrentItem.bind(this)} />
       )
     }
   }
-createItem(item){
-  const url= `http://localhost:3000/items/${this.state.currentItem.id}`
-  fetch(url,{
-    method: 'POST',
-       headers: {
-         "Content-Type": "application/json"
-       },
-       body: JSON.stringify(item)
-  })
-  .then(response=>response.json())
-  .then(data=>{
-    console.log('DATAA',data);
-    const updateItems=this.state.myItem.concat([data]);
-    console.log(updateItems)
-    this.setState({
-      myItems:updateItems,
-      moda:false
-    })
-  })
-  .catch(error=>{
-console.log(error)
-  })
-}
+
+  setFormType(type){
+    this.setState({ formType: type})
+
+
+  }
+
   updateItem(item) {
-    const url = `http://localhost:3000/items/${item.id}`
+    console.log("updating item \n\n\n\n\n")
+    const url = `http://localhost:3000/items/${this.state.currentItem.id}`
     fetch(url, {
       method: 'PUT',
       headers: {
@@ -137,21 +128,12 @@ console.log(error)
       body: JSON.stringify(item)
     })
       .then(data => {
-        const updateItem = this.state.items.map(item => {
-          return item.id === data.id ? data : item
-        })
-        console.log('current state:', this.state.items);
-        console.log('new state:', updateItem)
         this.setState({
-          items: updateItem,
-          activeView: item,
-          moda:false,
+          myItems: data
         })
-      })
-      .catch(error => {
-        console.log(error)
-      })
-  }
+      }
+      )}
+  
 
   deleteItem(id) {
     const url = `http://localhost:3000/items/${this.state.currentItem.id}`;
@@ -192,30 +174,34 @@ console.log(error)
   render() {
     return(
       <div className="app">
-      
-      <div className="header">
-        <h1 className="mainHeading" onClick={() => this.setView("landing")}>Lost and Found</h1>
-        <div className="actionButtons">
-          <button className="searchButton" onClick={() => this.setView("search")} >Search</button>
-          
-          {(this.state.user) ?
-            <div>
-              <button className="postButton" onClick={() => {
-                if (this.state.user) this.setView("form")
-                else this.setView("signin")
-              }}
-              >Post an Item!</button>
-              <button className="myItemsButton" onClick={() => this.setView("myitems")} >My Items</button>
-              <button className="logoutButton" onClick={() => this.setUser(null)}>Log Out</button>
-            </div>
-            : <button className="loginRegisterButton" onClick={() => this.setView("signin")} >Login/Register</button>}
-        </div>
-      </div>
-
-
-      {this.renderContent()}
+        {/* <Form/> */}
+        <div className="header">
+          <h1 className="mainHeading" onClick={() => this.setView("landing")}>Lost and Found</h1>
+          <div className="actionButtons">
+            <button className="searchButton" onClick={() => this.setView("search")} >Search</button>
+            
+            {(this.state.user) ?
+              <div>
+                <button className="postButton" onClick={() => {
+                  if (this.state.user) this.setView("form")
+                  else this.setView("signin")
+                  this.setFormType("new");
+                  this.setCurrentItem({});
+                }}
+                >Post an Item!</button>
+                <button className="myItemsButton" onClick={() => this.setView("myitems")} >My Items</button>
+                <button className="logoutButton" onClick={() => this.setUser(null)}>Log Out</button>
+              </div>
+              : <button className="loginRegisterButton" onClick={() => this.setView("signin")} >Login/Register</button>}
+          </div>
+          {this.renderContent()}
     </div>
   
+        </div>
+      
+
+
+     
     )
            
             }
