@@ -140,11 +140,9 @@ class Form extends Component {
         return (<div className="form">
             <h3>Lost/Found Something?</h3>
             <form onSubmit={this.handleSubmit.bind(this)}>
-                <Map mode='form'
-                     lon={46.70469633381731}
-                     lat={24.633948443770308}
-                     setLongitude={this.setLongitude.bind(this)}
-                     setLatitude={this.setLatitude.bind(this)}
+                <Map mapMode='form'
+                    setLongitude={this.setLongitude.bind(this)}
+                    setLatitude={this.setLatitude.bind(this)}
                 />
                 <label>Item Name: </label><input type="text" onChange={this.handleChange.bind(this)} name="name" value={this.state.name} /><br />
                 <label>Description: </label><textarea rows="4" cols="50" name="description" value={this.state.description} onChange={this.handleChange.bind(this)} /><br />

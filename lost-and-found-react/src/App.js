@@ -62,8 +62,7 @@ class App extends Component {
 
     else if (this.state.activeView === "search") {
       return (
-        <Search setView={this.setView.bind(this)}
-                setCurrentItem={this.setCurrentItem.bind(this)} />
+        <Search setView={this.setView.bind(this)} />
       )
     }
     else if (this.state.activeView === "signup") {
@@ -186,11 +185,7 @@ class App extends Component {
                 }}
                 >Post an Item!</button>
                 <button className="myItemsButton" onClick={() => this.setView("myitems")} >My Items</button>
-                <button className="logoutButton" onClick={() => {
-                  this.setUser(null);
-                  this.setView("landing");
-                }}
-                  >Log Out</button>
+                <button className="logoutButton" onClick={() => this.setUser(null)}>Log Out</button>
               </div>
               : <button className="loginRegisterButton" onClick={() => this.setView("signin")} >Login/Register</button>}
           </div>
