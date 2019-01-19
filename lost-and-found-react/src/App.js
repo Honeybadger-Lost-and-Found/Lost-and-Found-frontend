@@ -182,11 +182,13 @@ class App extends Component {
                 }}
                 >Post an Item!</button>
                 <button className="myItemsButton" onClick={() => this.setView("myitems")} >My Items</button>
+            
                 <button className="logoutButton" onClick={() => {
                   this.setUser(null);
                   this.setView("landing");
                 }}
                 >Log Out</button>
+
               </div>
               : <button className="loginRegisterButton" onClick={() => this.setView("signin")} >Login/Register</button>}
           </div>

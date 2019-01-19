@@ -146,6 +146,7 @@ class Form extends Component {
         return (<div className="form">
             <h3>Lost/Found Something?</h3>
             <form onSubmit={this.handleSubmit.bind(this)}>
+
                 {this.props.formType === "new" ?
                     <Map mode='form'
                         lon={46.70469633381731}
@@ -160,7 +161,6 @@ class Form extends Component {
                         setLatitude={this.setLatitude.bind(this)}
                     />
                 }
-
 
                 <label>Item Name: <input type="text" onChange={this.handleChange.bind(this)} name="name" value={this.state.name} /> </label> <br />
                 <label>Description: </label><textarea rows="4" cols="50" name="description" value={this.state.description} onChange={this.handleChange.bind(this)} /><br />
