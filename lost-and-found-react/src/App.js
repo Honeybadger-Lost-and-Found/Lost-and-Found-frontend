@@ -168,7 +168,7 @@ class App extends Component {
     };
     
     }
-  }
+  
 
 
   render() {
@@ -199,10 +199,10 @@ class App extends Component {
   
         </div>
       
-
+              
 
      
-    )
+              )}
            
             }
 

@@ -46,13 +46,7 @@ class MyItems extends Component {
             <div className="my-items">
                 {(this.state.myItems.length === 0) ? <p>No Items Found.</p>
                     : this.renderItems()}
-                {/* <div>
-                    // <Item
-                    updateItems={this.props.updateItems.bind(this)}
-                    deleteItems={this.props.deleteItems.bind(this)}
-                    toggleModal={this.props.toggleModal.bind(this)}
-                    />
-                </div>
+                
             </div>
 
 
