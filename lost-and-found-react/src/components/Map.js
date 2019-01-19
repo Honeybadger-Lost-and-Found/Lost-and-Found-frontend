@@ -39,6 +39,97 @@ class Map extends Component {
             <Feature coordinates={[this.state.center.lng, this.state.center.lat]} />
           </Layer>
         </MapBox>
+      )
+    }
+    else if (this.state.mode === "show") {
+      return (
+        <MapBox
+          style="mapbox://styles/mapbox/streets-v9"
+          containerStyle={{
+            height: "50vh",
+            width: "50vw"
+          }}
+          center={[this.state.center.lng, this.state.center.lat]}
+        >
+          <Layer
+            type="symbol"
+            id="marker"
+            layout={{ "icon-image": "harbor-15" }}>
+            <Feature coordinates={[this.props.item.lon, this.props.item.lat]} />
+          </Layer>
+        </MapBox>
+      )
+    }
+    // else if (this.state.mode === "edit") {
+    //   return (
+    //     <div></div>
+    //   )
+    // }
+    else if (this.state.mode === "search") {
+      return (
+        <MapBox
+          style="mapbox://styles/mapbox/streets-v9"
+          containerStyle={{
+            height: "50vh",
+            width: "75vw"
+          }}
+          
+          center={[this.state.center.lng, this.state.center.lat]}
+          onMove={(event) => {
+            this.setState({ center: event.transform.center })
+          }}
+        >
+          <Layer
+            type="symbol"
+            id="marker"
+            layout={{ "icon-image": "harbor-15" }}>
+            {this.props.items.map((item, index) => (
+              <Feature key={index}
+                onMouseEnter={this.onToggleHover.bind(this, item, 'pointer')}
+                onMouseLeave={this.onToggleHover.bind(this, {}, '')}
+                onClick={() => {
+                  // const newCenter = {
+                  //   lng: item.lon,
+                  //   lat: item.lat
+                  // }
+                  // this.setState({
+                  //   center: newCenter
+                  // })
+                  this.props.setCurrentItem(item);
+                  this.props.setView("itemshow");
+                }}
+                // onDblClick={() => {
+                //   // doubleClickZoom.disable
+                //   console.log("HIIIIIIIII");
+                //   this.props.setCurrentItem(item);
+                //   this.props.setView("itemshow");
+                // }}
+                coordinates={[item.lon, item.lat]}
+              />
+            ))}
+            {/* <Feature coordinates={[this.state.center.lng, this.state.center.lat]} /> */}
+          </Layer>
+          {(this.state.hovered) &&
+            (<Popup key={this.state.hoveredItem.id} coordinates={[this.state.hoveredItem.lon, this.state.hoveredItem.lat]}>
+              <div>
+                <div>{this.state.hoveredItem.name}</div>
+                <div>Added by: {this.state.hoveredItem.addedby}</div>
+                <div>Added on: {this.state.hoveredItem.addeddate}</div>
+              </div>
+            </Popup>)}
+        </MapBox>
+      )
+    }
+  }
+
+  render() {
+
+    return (
+      <div className="mapContainer">
+
+        {this.renderMap()}
+
+
       </div>
 
     )
