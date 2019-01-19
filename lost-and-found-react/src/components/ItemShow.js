@@ -48,8 +48,8 @@ class ItemShow extends Component {
                 <img src={this.props.currentItem.imageurl} alt="Item_Image" />
                 <p>Description: {this.props.currentItem.description}</p>
                 <p>Type: {this.props.currentItem.type}</p>
-                <p>Added By:{this.props.currentItem.addedby}</p>
-                <p>Added on:{this.props.currentItem.addeddate}</p>
+                <p>Added By: {this.props.currentItem.addedby}</p>
+                <p>Added on: {this.props.currentItem.addeddate}</p>
 
 
                 {/* BEFORE MERGE */}
@@ -60,7 +60,7 @@ class ItemShow extends Component {
                     <div className="buttons">
                         <button onClick={() => { 
                             this.props.deleteItem();
-                            this.props.setView("landing");
+                            this.props.setView("myitems");
                              }}>Delete</button>
 
                         <button onClick={() => { 
@@ -70,7 +70,6 @@ class ItemShow extends Component {
                         }}>Edit</button>
 
                     </div>
-                    : ''}
 
 
             </div>

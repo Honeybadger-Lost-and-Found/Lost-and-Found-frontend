@@ -32,12 +32,16 @@ class MyItems extends Component {
                     this.props.setCurrentItem(item);
                     this.props.setView("itemshow");
                 }}>
-                <Item item={item} user={this.props.user} />
+                <Item item={item} user={this.props.user} modifyMyItems={this.modifyMyItems.bind(this)}/>
                 </div>
 
 
             )
         })
+    }
+
+    modifyMyItems(id){
+
     }
     
 
@@ -45,15 +49,9 @@ class MyItems extends Component {
         return (
             <div className="my-items">
                 <h1>My Items</h1>
-                {(this.state.myItems.length === 0) ? <p>No Items Found.</p>
-                    : this.renderItems()}
-                {/* <div>
-                    // <Item
-                    updateItems={this.props.updateItems.bind(this)}
-                    deleteItems={this.props.deleteItems.bind(this)}
-                    toggleModal={this.props.toggleModal.bind(this)}
-                    />
-                </div> */}
+                {(this.state.myItems.length === 0) ?
+                  <p>No Items Found.</p>
+                 : this.renderItems()}
             </div>
 
 

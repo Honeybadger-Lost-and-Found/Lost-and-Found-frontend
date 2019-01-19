@@ -71,11 +71,11 @@ class Map extends Component {
         </MapBox>
       )
     }
-    else if (this.state.mode === "edit") {
-      // return (
-      //   <div></div>
-      // )
-    }
+    // else if (this.state.mode === "edit") {
+    //   return (
+    //     <div></div>
+    //   )
+    // }
     else if (this.state.mode === "search") {
       return (
         <MapBox
@@ -86,6 +86,9 @@ class Map extends Component {
           }}
           
           center={[this.state.center.lng, this.state.center.lat]}
+          onMove={(event) => {
+            this.setState({ center: event.transform.center })
+          }}
         >
           <Layer
             type="symbol"
@@ -96,22 +99,22 @@ class Map extends Component {
                 onMouseEnter={this.onToggleHover.bind(this, item, 'pointer')}
                 onMouseLeave={this.onToggleHover.bind(this, {}, '')}
                 onClick={() => {
-                  const newCenter = {
-                    lng: item.lon,
-                    lat: item.lat
-                  }
-                  this.setState({
-                    center: newCenter
-                  })
-                  // this.props.setCurrentItem(item);
-                  // this.props.setView("itemshow");
-                }}
-                onDblClick={() => {
-                  // doubleClickZoom.disable
-                  console.log("HIIIIIIIII");
+                  // const newCenter = {
+                  //   lng: item.lon,
+                  //   lat: item.lat
+                  // }
+                  // this.setState({
+                  //   center: newCenter
+                  // })
                   this.props.setCurrentItem(item);
                   this.props.setView("itemshow");
                 }}
+                // onDblClick={() => {
+                //   // doubleClickZoom.disable
+                //   console.log("HIIIIIIIII");
+                //   this.props.setCurrentItem(item);
+                //   this.props.setView("itemshow");
+                // }}
                 coordinates={[item.lon, item.lat]}
               />
             ))}
