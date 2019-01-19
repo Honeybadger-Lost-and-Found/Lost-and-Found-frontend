@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Item from '../components/Item'
+import Map from '../components/Map';
 
 class Search extends Component {
   constructor() {
@@ -19,7 +20,11 @@ class Search extends Component {
       .then(response => response.json())
       .then(data => {
         console.log('get data from the api: ', data)
-        this.setState({ items: data });
+        this.setState({
+          items: data,
+          searched: false,
+          results: []
+        });
       })
       .catch(error => {
         console.log(error);
@@ -58,7 +63,7 @@ class Search extends Component {
 
   renderResults() {
     if (this.state.results.length === 0) {
-      return(
+      return (
         <div>
           <p>No results found.</p>
         </div>
@@ -67,8 +72,15 @@ class Search extends Component {
     else {
 
       return this.state.results.map((result, index) => {
-        console.log(result)
-        return <Item key={index} item={result} />
+        return (
+          <div key={index} onClick={() => {
+            console.log("THE RESULT: ", result);
+            this.props.setCurrentItem(result);
+            this.props.setView("itemshow");
+          }}>
+            <Item item={result} />
+          </div>
+        )
       })
     }
   }
@@ -78,16 +90,23 @@ class Search extends Component {
     return (
       <div>
 
-        <div className="back"> Back</div>
-
         <div>
+          {this.state.searched ?
+            <Map mode="search" items={this.state.results}
+              lon={46.70469633381731}
+              lat={24.633948443770308}
+              setView={this.props.setView}
+              setCurrentItem={this.props.setCurrentItem} />
+            : <Map mode="search" items={this.state.items}
+              lon={46.70469633381731}
+              lat={24.633948443770308}
+              setView={this.props.setView}
+              setCurrentItem={this.props.setCurrentItem} />
+          }
 
           <form className="search" onSubmit={this.handleSubmit.bind(this)}>
-
             <input className="input-text" type="text" placeholder="Search.." onChange={this.handleChange.bind(this)} />
-
             <button className="search-button"> submit </button>
-
           </form>
 
           {(this.state.searched) ? this.renderResults() : ""}

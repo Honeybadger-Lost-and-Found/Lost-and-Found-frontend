@@ -1,29 +1,40 @@
-import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
+import ReactMapboxGl, { Layer, Feature, Popup } from "react-mapbox-gl";
 import React, { Component } from 'react';
 
 const MapBox = ReactMapboxGl({
   accessToken: "pk.eyJ1IjoiZ290aGFtZXkiLCJhIjoiY2pxejRzMjVhMDlyZjQ1bGh4ZHdzaXkzMyJ9.3nRJUHgfnPtcOJvi9q06hw"
 });
 class Map extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
+      mode: props.mode,
       center: {
-        lng: 46.70469633381731,
-        lat: 24.633948443770308
-      }
+        lng: props.lon,
+        lat: props.lat
+      },
+      hover: false,
+      hoveredItem: null
     }
   }
+  onToggleHover(item, cursor, event) {
+    // console.log(event)
+    event.map.getCanvas().style.cursor = cursor;
 
-  render() {
+    this.setState({
+      hovered: !this.state.hovered,
+      hoveredItem: item
+    })
+  }
 
-    return (
-      <div className="mapContainer">
+  renderMap() {
+    if (this.state.mode === "form") {
+      return (
         <MapBox
           style="mapbox://styles/mapbox/streets-v9"
           containerStyle={{
             height: "50vh",
-            width: "50vw"
+            width: "75vw"
           }}
           center={[this.state.center.lng, this.state.center.lat]}
           onMove={(event) => {
@@ -128,7 +139,6 @@ class Map extends Component {
       <div className="mapContainer">
 
         {this.renderMap()}
-
 
       </div>
 
