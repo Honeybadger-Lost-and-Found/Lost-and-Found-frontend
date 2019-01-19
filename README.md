@@ -2,19 +2,14 @@
 
 
 
-## Team members:
- Raed 
- Abdulkareem
- Shahad
- Alanoud
-
 ## Description:
-Full stack application using express backend and React frontend
+ Lost-and-found is a web app that when someone  loses an item can post the name of that item and it's description.Also, when it is found by using the map , the other party can upload that image and where it is found  and search for the item that was lost.
 
 ## Technologies used:
+- React app and Express API
+- Local API
 - npm imageUploader
 - npm google location
-- Local API
 - npm materialize for styling
 
 ## User Stories:
@@ -35,4 +30,10 @@ https://www.figma.com/file/Wywpwuglteo9Kz5mxteRz21u/Lost-and-found-prototype?nod
 ## Unsolved problems that our team had to overcome:
  - Handling the map location was a bit challenging
  - Editing or updating the information or in our case the items 
+ 
+ ## Team members:
+- Raed 
+- Abdulkareem
+- Shahad
+- Alanoud
  
