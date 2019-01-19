@@ -6,8 +6,9 @@
  Lost-and-found is a web app that when someone  loses an item can post the name of that item and it's description.Also, when it is found by using the map , the other party can upload that image and where it is found  and search for the item that was lost.
 
 ## Technologies used:
-- React app and Express API
-- Local API
+API express server with the full CRUD functionality and React app for the frontend
+
+## NPM packages:
 - npm imageUploader
 - npm google location
 - npm materialize for styling
@@ -24,7 +25,6 @@ https://www.figma.com/file/Wywpwuglteo9Kz5mxteRz21u/Lost-and-found-prototype?nod
 
 ## Link to our hosting app:
 
-## Dependencies:
 
 
 ## Unsolved problems that our team had to overcome:
