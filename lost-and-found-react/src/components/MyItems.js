@@ -48,12 +48,10 @@ class MyItems extends Component {
     render() {
         return (
             <div className="my-items">
-
                 <h1>My Items</h1>
                 {(this.state.myItems.length === 0) ?
                   <p>No Items Found.</p>
                  : this.renderItems()}
-
             </div>
 
 

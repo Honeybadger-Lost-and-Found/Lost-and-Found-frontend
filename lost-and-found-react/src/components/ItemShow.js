@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Map from '../components/Map';
 
 class ItemShow extends Component {
     constructor() {
@@ -40,6 +41,9 @@ class ItemShow extends Component {
     render() {
         return (
             <div className="showItem">
+                <Map mode="show" item={this.props.currentItem} 
+                     lon={this.props.currentItem.lon}
+                     lat={this.props.currentItem.lat}/>
                 <h2>{this.props.currentItem.name}</h2>
                 <img src={this.props.currentItem.imageurl} alt="Item_Image" />
                 <p>Description: {this.props.currentItem.description}</p>
@@ -47,8 +51,10 @@ class ItemShow extends Component {
                 <p>Added By: {this.props.currentItem.addedby}</p>
                 <p>Added on: {this.props.currentItem.addeddate}</p>
 
-                
-                {(this.props.user.username === this.props.currentItem.addedby) ?
+
+                 
+                {(this.props.user) && (this.props.user.username === this.props.currentItem.addedby) ?
+
                     <div className="buttons">
                         <button onClick={() => { 
                             this.props.deleteItem();
@@ -62,6 +68,7 @@ class ItemShow extends Component {
                         }}>Edit</button>
 
                     </div>
+                : ""}
 
 
             </div>
