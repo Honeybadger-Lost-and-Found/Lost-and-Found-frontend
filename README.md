@@ -3,7 +3,7 @@
 
 
 ## Description:
- Lost-and-found is a web app that when someone  loses an item can post the name of that item and it's description.Also, when it is found by using the map , the other party can upload that image and where it is found  and search for the item that was lost.
+ Lost-and-found is a web app that when a person  loses an item can post the name of that item and it's description.Also, when it is found  , the other party can upload that image where it is found on the map and contact that person.
 
 ## Technologies used:
 - API express server with the full CRUD functionality and React app for the frontend
