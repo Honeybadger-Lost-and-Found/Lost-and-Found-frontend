@@ -81,10 +81,11 @@ class Form extends Component {
                 },
                 body: JSON.stringify(data)
             })
-                // .then(response => response.json())
+                .then(response => response.json())
                 .then(data => {
                     console.log(data)
-                    console.log('Success')
+                    console.log('Success');
+                    this.props.concatMyItems(data);
                     this.props.setView('myitems');
                 })
                 .catch(error => {
@@ -113,13 +114,13 @@ class Form extends Component {
                 },
                 body: JSON.stringify(newItem)
             })
-                // .then(response => response.json())
+                .then(response => response.json())
                 .then(data => {
-                    console.log(data)
-                    console.log('EDIT Success')
-                    this.props.setCurrentItem(newItem)
-                    this.props.setView('itemshow');
-                    this.props.setFormType("new");
+                    console.log('EDIT Success for: ', data)
+                    this.props.modifyMyItems(data);
+                    // this.props.setCurrentItem(newItem)
+                    // this.props.setView('itemshow');
+                    // this.props.setFormType("new");
                 })
                 .catch(error => {
                     console.log(error)
