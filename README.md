@@ -3,15 +3,15 @@
 
 
 ## Description:
- Lost-and-found is a web app that when a person  loses an item can post the name of that item and it's description.Also, when it is found  , the other party can upload that image where it is found on the map and contact that person.
+ Lost-and-found is a web app that enables a person to post information about an item that they have found or lost. The other party can utilize our app to contact the person who posted the item to either retrieve the item or inform them that they have found a lost item matching the provided description.
 
 ## Technologies used:
 - API express server with the full CRUD functionality and React app for the frontend
 - Cloudinary API
 
 ## NPM packages:
-- npm google location
-- npm materialize for styling + css styling
+- mapbox
+- materialize for styling + css styling
 
 ## User Stories:
 - As a user, I want to make a new entry for a lost item so that the person who lost it can look for it.
