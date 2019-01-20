@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import Map from '../components/Map';
+// import Card from '@material-ui/core/Card';
+import Button from '@material-ui/core/Button';
+
+
 
 class ItemShow extends Component {
     constructor() {
@@ -41,9 +45,16 @@ class ItemShow extends Component {
     render() {
         return (
             <div className="showItem">
+
+
                 <Map mode="show" item={this.props.currentItem} 
                      lon={this.props.currentItem.lon}
                      lat={this.props.currentItem.lat}/>
+                     
+            <div className="itemShowCard">
+
+
+
                 <h2>{this.props.currentItem.name}</h2>
                 <img src={this.props.currentItem.imageurl} alt="Item_Image" />
                 <p>Description: {this.props.currentItem.description}</p>
@@ -56,22 +67,24 @@ class ItemShow extends Component {
                 {(this.props.user) && (this.props.user.username === this.props.currentItem.addedby) ?
 
                     <div className="buttons">
-                        <button onClick={() => { 
+                        <Button id="myitemButt" onClick={() => { 
                             this.props.deleteItem();
                             this.props.setView("myitems");
-                             }}>Delete</button>
+                             }}>Delete</Button>
 
-                        <button onClick={() => { 
+                        <Button id="myitemEditButt" onClick={() => { 
                       
                         this.props.setFormType("edit");
                         this.props.setView("form");
-                        }}>Edit</button>
+                        }}>Edit</Button>
 
                     </div>
                 : ""}
 
 
             </div>
+            </div>
+
         )
     }
 }
