@@ -107,9 +107,9 @@ class Search extends Component {
               setCurrentItem={this.props.setCurrentItem} />
           }
 
-          <form className="search" onSubmit={this.handleSubmit.bind(this)}>
+          <form className="search" >
             <br></br><input className="input-text" type="text" placeholder="Search.." onChange={this.handleChange.bind(this)} />
-          <br></br><Button id="search-button">Submit</Button>
+          <br></br><Button id="search-button" onClick={this.handleSubmit.bind(this)}>Submit</Button>
           </form>
 
           
