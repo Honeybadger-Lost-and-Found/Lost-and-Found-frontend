@@ -70,7 +70,7 @@ class ItemShow extends Component {
                     <div className="buttons">
                         <Button id="myitemButt" onClick={() => { 
                             this.props.deleteItem(this.props.currentItem.id);
-                            this.props.setView("myitems");
+                            // this.props.setView("myitems");
                              }}>Delete</Button>
 
                         <Button id="myitemEditButt" onClick={() => { 

@@ -149,7 +149,8 @@ class Form extends Component {
         return (
         <div className="form-post">
         <div className="show-form">
-            <h3>Lost/Found Something?</h3>
+        <br/>
+            <h2>Lost/Found Something?</h2>
 
             <form className="formShow">
                 {this.props.formType === "new" ?
