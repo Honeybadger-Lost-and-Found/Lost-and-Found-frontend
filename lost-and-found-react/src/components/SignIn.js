@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
 
 class SignIn extends Component {
     constructor(props){
@@ -33,14 +36,21 @@ class SignIn extends Component {
 
     render(){
         return(
-            <div>
+            <Card id="signInCard">
+            <div className="signIn">
                 <h3>Sign In</h3>
-                <form onSubmit={this.handleSubmit.bind(this)}>
-                    <input type="text" name="username" onChange={this.handelChange.bind(this)}/>
-                    <button>Submit</button>
+                <form>
+
+                    <label > Username: </label> <br/><TextField id="username" type="text" name="username" onChange={this.handelChange.bind(this)}/>
+                    <br></br><br></br>
+
+                    <Button  id ="signInButton" onClick={this.handleSubmit.bind(this)}>Submit</Button>
+
+                    <br></br><br></br>
                     <p>No account? <span className="signupSpan" onClick={() => this.props.setView('signup')} >Sign Up now! </span> </p>
                 </form>
             </div>
+            </Card>
         )
     }
 }

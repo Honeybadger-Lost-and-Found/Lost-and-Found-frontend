@@ -34,7 +34,8 @@ class Map extends Component {
           style="mapbox://styles/mapbox/streets-v9"
           containerStyle={{
             height: "50vh",
-            width: "75vw"
+            width: "50vw",
+            marginLeft:"8%"
           }}
           center={[this.state.center.lng, this.state.center.lat]}
           onMove={(event) => {
@@ -58,7 +59,10 @@ class Map extends Component {
           style="mapbox://styles/mapbox/streets-v9"
           containerStyle={{
             height: "50vh",
-            width: "50vw"
+            width: "117vh",
+            paddingTop:"2%",
+            marginLeft:"20%"
+          
           }}
           center={[this.state.center.lng, this.state.center.lat]}
         >
@@ -82,7 +86,8 @@ class Map extends Component {
           style="mapbox://styles/mapbox/streets-v9"
           containerStyle={{
             height: "50vh",
-            width: "75vw"
+            width: "56vw",
+            marginLeft:"22%"
           }}
           
           center={[this.state.center.lng, this.state.center.lat]}

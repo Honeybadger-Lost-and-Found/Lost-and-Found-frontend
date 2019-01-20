@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Item from '../components/Item'
 import Map from '../components/Map';
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+
 
 class Search extends Component {
   constructor() {
@@ -105,11 +108,16 @@ class Search extends Component {
           }
 
           <form className="search" onSubmit={this.handleSubmit.bind(this)}>
-            <input className="input-text" type="text" placeholder="Search.." onChange={this.handleChange.bind(this)} />
-            <button className="search-button"> submit </button>
+            <br></br><input className="input-text" type="text" placeholder="Search.." onChange={this.handleChange.bind(this)} />
+          <br></br><Button id="search-button">Submit</Button>
           </form>
 
+          
+          <Card id="resultCard">  
+
           {(this.state.searched) ? this.renderResults() : ""}
+
+          </Card>
 
         </div>
 

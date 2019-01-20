@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ImageUpload from './ImageUpload';
 import Map from '../components/Map';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 class Form extends Component {
     constructor(props) {
@@ -79,10 +81,11 @@ class Form extends Component {
                 },
                 body: JSON.stringify(data)
             })
-                // .then(response => response.json())
+                .then(response => response.json())
                 .then(data => {
                     console.log(data)
-                    console.log('Success')
+                    console.log('Success');
+                    this.props.concatMyItems(data);
                     this.props.setView('myitems');
                 })
                 .catch(error => {
@@ -111,13 +114,13 @@ class Form extends Component {
                 },
                 body: JSON.stringify(newItem)
             })
-                // .then(response => response.json())
+                .then(response => response.json())
                 .then(data => {
-                    console.log(data)
-                    console.log('EDIT Success')
-                    this.props.setCurrentItem(newItem)
-                    this.props.setView('itemshow');
-                    this.props.setFormType("new");
+                    console.log('EDIT Success for: ', data)
+                    this.props.modifyMyItems(data);
+                    // this.props.setCurrentItem(newItem)
+                    // this.props.setView('itemshow');
+                    // this.props.setFormType("new");
                 })
                 .catch(error => {
                     console.log(error)
@@ -143,9 +146,12 @@ class Form extends Component {
     }
 
     render() {
-        return (<div className="form">
+        return (
+        <div className="form-post">
+        <div className="show-form">
             <h3>Lost/Found Something?</h3>
-            <form onSubmit={this.handleSubmit.bind(this)}>
+
+            <form className="formShow">
                 {this.props.formType === "new" ?
                     <Map mode='form'
                         lon={46.70469633381731}
@@ -161,19 +167,33 @@ class Form extends Component {
                     />
                 }
 
+<div className="formBox">
+                <label>Item Name:</label> <br></br> 
+                <TextField type="text" onChange={this.handleChange.bind(this)} name="name" value={this.state.name} /> <br />
+                <br></br>
+                <label>Description: </label> <br>
+                </br><TextField id="textArea" rows="4" cols="50" name="description" value={this.state.description} onChange={this.handleChange.bind(this)} /><br />
+                <br></br>
 
-                <label>Item Name: <input type="text" onChange={this.handleChange.bind(this)} name="name" value={this.state.name} /> </label> <br />
-                <label>Description: </label><textarea rows="4" cols="50" name="description" value={this.state.description} onChange={this.handleChange.bind(this)} /><br />
-                <label>Type: </label><select name="type" onChange={this.handleChange.bind(this)}>
+                <label>Type: </label>
+
+
+                <select name="type" onChange={this.handleChange.bind(this)}>
                     <option value='found' >Found</option>
                     <option value='lost' >Lost</option>
                     {(this.props.formType === "edit") ? <option value='archive' onChange={this.handleChange.bind(this)} >Archive</option> : ''}
                 </select><br />
 
-                <label>Image: </label> <ImageUpload setImgUrl={this.setImgUrl.bind(this)} name="imageurl" /><br />
+                <br></br>
 
-                <button>Submit</button>
+                 <ImageUpload setImgUrl={this.setImgUrl.bind(this)} name="imageurl" /><br />
+
+                <Button id="form-button"  onClick={this.handleSubmit.bind(this)}> Submit </Button>
+                </div>
             </form>
+            </div>
+            
+
         </div>
         )
     }
