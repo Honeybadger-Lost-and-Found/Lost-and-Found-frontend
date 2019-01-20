@@ -1,7 +1,7 @@
-/* 
+
 .mainHeading{
   cursor: pointer;
-} */
+}
 .header > h1{
   width: 50%;
 }
@@ -233,7 +233,7 @@ footer .small-button.medium {
   background-color:black;
   font-weight: bold;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  cursor: pointer;
+  /* cursor: pointer; */
   margin-top: 0px;
   display: flex;
   justify-content: space-around;
@@ -257,7 +257,8 @@ footer .small-button.medium {
   color: white;
   /* padding-top:5% ; */
   font-size: 25px;
-  padding-left:20px;
+  /* padding-left:20px; */
+  text-align: center;
 }
 .span{
   background-color:  #e6e600;
@@ -274,12 +275,12 @@ footer .small-button.medium {
 }
 .signUp{
   margin-top:2%;
-  margin-left:4%;
-  padding:5%;
+  /* margin-left:4%; */
+  padding:5% 20%;
   color: black;
   /* padding-top:5% ; */
   font-size: 20px;
-  padding-left:50px;
+  /* padding-left:50px; */
 }
 .showForm{
 }
@@ -354,6 +355,10 @@ form{
   margin-right: 10px;
 }
 
+.my-items{
+  text-align: center;
+}
+
 #searchbutton{
   margin-right:100px;
   margin-top:13px;
@@ -385,9 +390,7 @@ margin-top: 20px;
   margin-bottom: 30px;
 }
 
-.signUp{
-padding-left: 120px;
-}
+
 
 #postButton{
   border: 1px black solid;

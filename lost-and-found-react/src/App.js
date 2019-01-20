@@ -27,7 +27,7 @@ class App extends Component {
 
   setUser(user) {
     this.setState({ user: user });
-    if (user) this.fetchUserItems(user.username);
+    if (user !== null && user.username) this.fetchUserItems(user.username);
   }
 
   setCurrentItem(item) {
@@ -38,6 +38,7 @@ class App extends Component {
   setFormType(type) {
     this.setState({ formType: type })
   }
+  
 
   fetchUserItems(username) {
     const url = `http://localhost:3000/items/users/${username}`
@@ -65,8 +66,8 @@ class App extends Component {
 
           <div className="description">
           <p>
-              Be a good person and report here if you <span className="span">found</span> something that belongs<br></br> to someone else.<br></br>
-              You can also report that you  <span className="span">lost </span>something <br></br>and if another user finds it, they can contact you.
+              Be a good person and report here if you <span className="span">found</span> something that belongs<br></br> to someone else.<br></br><br/>
+              You can also report that you  <span className="span">lost</span> something <br></br>and if another user finds it, they can contact you.
            </p>
           </div>
 
