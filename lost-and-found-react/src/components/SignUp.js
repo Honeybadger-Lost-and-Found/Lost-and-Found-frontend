@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
 
 
 class SignUp extends Component {
@@ -54,16 +57,27 @@ class SignUp extends Component {
    
     render(){
         return(
-            <div>
+          <Card id="signUpCard">
+           <div className="signUp">
               <h3>Sign Up</h3>
-            <form onSubmit={this.handleSubmit.bind(this)}>
-              <label>Name:</label><input required type="text" onChange={this.handleChange.bind(this)} name="username" /><br/>
-              <label>Email:</label><input required type="text" onChange={this.handleChange.bind(this)}  name="email" /><br/>
-              <label>Phone:</label><input required type="text" onChange={this.handleChange.bind(this)}  name="phone" /><br/>
-              <button>submit</button>
+            <form>
+              <label>Name:</label><br></br>
+              <TextField required type="text" onChange={this.handleChange.bind(this)} name="username" /><br/>
+              <br></br>
+              <label>Email:</label><br></br>
+              <TextField required type="text" onChange={this.handleChange.bind(this)}  name="email" /><br/>
+              <br></br>
+              <label>Phone:</label><br></br>
+              <TextField required type="text" onChange={this.handleChange.bind(this)}  name="phone" /><br/>
+              
+              <br></br>
+              
+              <Button id="signUpButton" variant="outlined" onClick={this.handleSubmit.bind(this)}> submit</Button>
+
             </form>
             <p id="signUpStatus"></p>
           </div>
+          </Card>
         )
     }
 }
