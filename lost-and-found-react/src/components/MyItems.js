@@ -32,21 +32,26 @@ class MyItems extends Component {
                     this.props.setCurrentItem(item);
                     this.props.setView("itemshow");
                 }}>
-                <Item item={item} user={this.props.user} />
+                <Item item={item} user={this.props.user} modifyMyItems={this.modifyMyItems.bind(this)}/>
                 </div>
 
 
             )
         })
     }
+
+    modifyMyItems(id){
+
+    }
     
 
     render() {
         return (
             <div className="my-items">
-                {(this.state.myItems.length === 0) ? <p>No Items Found.</p>
-                    : this.renderItems()}
-                
+                <h1>My Items</h1>
+                {(this.state.myItems.length === 0) ?
+                  <p>No Items Found.</p>
+                 : this.renderItems()}
             </div>
 
 

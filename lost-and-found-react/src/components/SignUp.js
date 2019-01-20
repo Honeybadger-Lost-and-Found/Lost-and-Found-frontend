@@ -32,12 +32,12 @@ class SignUp extends Component {
           })
           .then(response => response.json())
           .then(data => {
-            // console.log(data);
             console.log("SignUp successful for: ", data);
             this.props.setUser(data);
             this.props.setView("landing");
           })
           .catch(error => {
+            document.getElementById("signUpStatus").innerHTML = "Username already taken."
             console.log(error);
           })
     }
@@ -57,15 +57,15 @@ class SignUp extends Component {
             <div>
               <h3>Sign Up</h3>
             <form onSubmit={this.handleSubmit.bind(this)}>
-              <label>Name:</label><input type="text" onChange={this.handleChange.bind(this)} name="username" /><br/>
-              <label>Email:</label><input type="text" onChange={this.handleChange.bind(this)}  name="email" /><br/>
-              <label>Phone:</label><input type="text" onChange={this.handleChange.bind(this)}  name="phone" /><br/>
+              <label>Name:</label><input required type="text" onChange={this.handleChange.bind(this)} name="username" /><br/>
+              <label>Email:</label><input required type="text" onChange={this.handleChange.bind(this)}  name="email" /><br/>
+              <label>Phone:</label><input required type="text" onChange={this.handleChange.bind(this)}  name="phone" /><br/>
               <button>submit</button>
             </form>
+            <p id="signUpStatus"></p>
           </div>
         )
     }
 }
 
 export default SignUp;
-

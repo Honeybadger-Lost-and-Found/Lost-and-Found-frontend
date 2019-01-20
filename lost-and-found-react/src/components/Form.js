@@ -5,17 +5,38 @@ import Map from '../components/Map';
 class Form extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            name: props.item ? props.item.name : '',
-            description: props.item ? props.item.description : '',
-            type: props.item ? props.item.type : '',
-            imageurl: props.item ? props.item.imageurl : '',
-            lat: props.item ? props.item.lat : '',
-            lon: props.item ? props.item.lon : '',
-            addedby: props.item ? props.item.addedby : '',
-            addeddate: props.item ? props.item.addeddate : '',
-            id: props.item ? props.item.id : null
+        if (props.formType === "edit") {
+            this.state = {
+                name: props.item.name,
+                description: props.item.description,
+                type: props.item.type,
+                imageurl: props.item.imageurl,
+                lat: props.item.lat,
+                lon: props.item.lon
+            }
         }
+        else {
+            this.state = {
+                name: '',
+                description: '',
+                type: 'found',
+                imageurl: '',
+                lat: 24.633948443770308,
+                lon: 46.70469633381731
+            }
+        }
+        //     this.state = {
+        //     name: props.item ? props.item.name : '',
+        //     description: props.item ? props.item.description : '',
+        //     type: props.item ? props.item.type : 'found',
+        //     imageurl: props.item ? props.item.imageurl : '',
+        //     lat: props.item ? props.item.lat : '',
+        //     lon: props.item ? props.item.lon : '',
+        //     addedby: props.item ? props.item.addedby : '',
+        //     addeddate: props.item ? props.item.addeddate : '',
+        //     id: props.item ? props.item.id : null
+        // }
+
 
     }
     handleSubmit(event) {
@@ -35,7 +56,7 @@ class Form extends Component {
             if (mm < 10) {
                 mm = '0' + mm;
             }
-            today = mm + '/' + dd + '/' + yyyy;
+            today = dd + '/' + mm + '/' + yyyy;
             //
 
             const data = {
@@ -108,8 +129,8 @@ class Form extends Component {
         console.log('changes');
         // let formData = {};
         // formData[event.target.name] = event.target.value;
-        this.setState({ [event.target.name]: event.target.value });
-        console.log("THE STATE: ", this.state)
+        this.setState({ [event.target.name]: event.target.value }, console.log("THE STATE: ", this.state));
+
     }
     setImgUrl(url) {
         this.setState({ imageurl: url });
@@ -121,30 +142,27 @@ class Form extends Component {
         this.setState({ lat: latitude });
     }
 
-    componentDidMount() {
-        console.log("form Type ", this.props.formType);
-        console.log("the edited data ", this.props.item);
-
-        // if (this.state.currentItem{this.updateItem}){
-        //     else{
-        //         d
-        //     }
-        // }
-
-        // this.setState({
-
-        // })
-
-    }
     render() {
         return (<div className="form">
             <h3>Lost/Found Something?</h3>
             <form onSubmit={this.handleSubmit.bind(this)}>
-                <Map mapMode='form'
-                    setLongitude={this.setLongitude.bind(this)}
-                    setLatitude={this.setLatitude.bind(this)}
-                />
-                <label>Item Name: </label><input type="text" onChange={this.handleChange.bind(this)} name="name" value={this.state.name} /><br />
+                {this.props.formType === "new" ?
+                    <Map mode='form'
+                        lon={46.70469633381731}
+                        lat={24.633948443770308}
+                        setLongitude={this.setLongitude.bind(this)}
+                        setLatitude={this.setLatitude.bind(this)}
+                    /> :
+                    <Map mode='form'
+                        lon={this.props.item.lon}
+                        lat={this.props.item.lat}
+                        setLongitude={this.setLongitude.bind(this)}
+                        setLatitude={this.setLatitude.bind(this)}
+                    />
+                }
+
+
+                <label>Item Name: <input type="text" onChange={this.handleChange.bind(this)} name="name" value={this.state.name} /> </label> <br />
                 <label>Description: </label><textarea rows="4" cols="50" name="description" value={this.state.description} onChange={this.handleChange.bind(this)} /><br />
                 <label>Type: </label><select name="type" onChange={this.handleChange.bind(this)}>
                     <option value='found' >Found</option>
@@ -156,7 +174,8 @@ class Form extends Component {
 
                 <button>Submit</button>
             </form>
-        </div>)
+        </div>
+        )
     }
 }
 
