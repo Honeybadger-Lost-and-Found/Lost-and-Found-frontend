@@ -2,25 +2,25 @@ import React, { Component } from 'react';
 import Item from './Item';
 
 class MyItems extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            myItems: []
+            myItems: props.myItems
         }
     }
     componentDidMount() {
-        const url = `http://localhost:3000/items/users/${this.props.user.username}`//filter through users
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                console.log("DATAAAA", data)
-                this.setState({
-                    myItems: data
-                }, function(){console.log(this.state.myItems)})
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        // const url = `http://localhost:3000/items/users/${this.props.user.username}`//filter through users
+        // fetch(url)
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         console.log("DATAAAA", data)
+        //         this.setState({
+        //             myItems: data
+        //         }, function(){console.log(this.state.myItems)})
+        //     })
+        //     .catch(error => {
+        //         console.log(error)
+        //     })
     }
     renderItems() {
 
@@ -32,16 +32,11 @@ class MyItems extends Component {
                     this.props.setCurrentItem(item);
                     this.props.setView("itemshow");
                 }}>
-                <Item item={item} user={this.props.user} modifyMyItems={this.modifyMyItems.bind(this)}/>
+                <Item item={item} user={this.props.user}/>
                 </div>
-
 
             )
         })
-    }
-
-    modifyMyItems(id){
-
     }
     
 
@@ -54,9 +49,7 @@ class MyItems extends Component {
                  : this.renderItems()}
             </div>
 
-
         )
-
     }
 }
 

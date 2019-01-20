@@ -15,7 +15,8 @@ class App extends Component {
       activeView: "landing",
       user: null,
       currentItem: null,
-      formType: "new"
+      formType: "new",
+      myItems: []
     }
   }
 
@@ -25,11 +26,35 @@ class App extends Component {
 
   setUser(user) {
     this.setState({ user: user });
+    if (user) this.fetchUserItems(user.username);
   }
 
   setCurrentItem(item) {
     console.log("step 2", "set current item", item)
     this.setState({ currentItem: item });
+  }
+
+  setFormType(type) {
+    this.setState({ formType: type })
+  }
+
+  fetchUserItems(username) {
+    const url = `http://localhost:3000/items/users/${username}`
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        console.log("DATAAAA", data)
+        this.setState({
+          myItems: data
+        })
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+
+  concatMyItems(item) {
+    this.setState({ myItems: this.state.myItems.concat(item) })
   }
 
   renderContent() {
@@ -84,7 +109,8 @@ class App extends Component {
           setView={this.setView.bind(this)}
           setCurrentItem={this.setCurrentItem.bind(this)}
           updateItems={this.updateItem.bind(this)}
-          deleteItems={this.deleteItem.bind(this)} />
+          deleteItems={this.deleteItem.bind(this)}
+          myItems={this.state.myItems} />
       )
     }
     else if (this.state.activeView === "itemshow") {
@@ -105,7 +131,9 @@ class App extends Component {
           // <div>form placeholder</div>
           <Form user={this.state.user} formType={this.state.formType} item={this.state.currentItem}
             setView={this.setView.bind(this)} setFormType={this.setFormType.bind(this)}
-            setCurrentItem={this.setCurrentItem.bind(this)} />
+            setCurrentItem={this.setCurrentItem.bind(this)}
+            concatMyItems={this.concatMyItems.bind(this)} 
+            modifyMyItems={this.modifyMyItems.bind(this)}/>
         )
       }
       else {
@@ -118,12 +146,6 @@ class App extends Component {
     }
   }
 
-  setFormType(type) {
-    this.setState({ formType: type })
-
-
-  }
-
   updateItem(item) {
     console.log("updating item \n\n\n\n\n")
     const url = `http://localhost:3000/items/${this.state.currentItem.id}`
@@ -134,31 +156,52 @@ class App extends Component {
       },
       body: JSON.stringify(item)
     })
-      .catch(error => {
-        console.log(error);
-      })
-  }
-
-
-  deleteItem() {
-    const url = `http://localhost:3000/items/${this.state.currentItem.id}`;
-    fetch(url, {
-      method: 'DELETE'
-    })
       .then(response => response.json())
       .then(data => {
+        const updatedArray = this.state.myItems.map((element) => {
+          return element.id === item.id ? item : element;
+        })
         this.setState({
-          currentItem: null //
+          myItems: updatedArray,
+          currentItem: item,
+          activeView: "itemshow",
+          formType: "new"
         })
       })
       .catch(error => {
         console.log(error);
       })
   }
-  toggleModal() {
-    this.setState({
-      modal: !this.state.modal
+  modifyMyItems(item){
+    const updatedArray = this.state.myItems.map((element) => {
+      return element.id === item.id ? item : element;
     })
+    this.setState({
+      myItems: updatedArray,
+      currentItem: item,
+      activeView: "itemshow",
+      formType: "new"
+    })
+  }
+
+
+  deleteItem(id) {
+    const url = `http://localhost:3000/items/${this.state.currentItem.id}`;
+    fetch(url, {
+      method: 'DELETE'
+    })
+      .then(response => response.json())
+      .then(data => {
+        const filteredArray = this.state.myItems.filter((item) => item.id !== id)
+        this.setState({
+          currentItem: null,
+          myItems: filteredArray,
+          activeView: "myitems"
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      })
   }
 
   render() {
