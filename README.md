@@ -11,7 +11,7 @@
 
 ## NPM packages:
 - npm google location
-- npm materialize for styling
+- npm materialize for styling + css styling
 
 ## User Stories:
 - As a user, I want to make a new entry for a lost item so that the person who lost it can look for it.
