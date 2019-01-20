@@ -257,7 +257,8 @@ footer .small-button.medium {
   color: white;
   /* padding-top:5% ; */
   font-size: 25px;
-  padding-left:20px;
+  /* padding-left:20px; */
+  text-align: center;
 }
 .span{
   background-color:  #e6e600;
@@ -352,6 +353,10 @@ form{
   background-color:  #e6e600;
   margin-bottom: 20px;
   margin-right: 10px;
+}
+
+.my-items{
+  text-align: center;
 }
 
 #searchbutton{
