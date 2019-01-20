@@ -4,8 +4,10 @@ import Search from './components/Search';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import MyItems from './components/MyItems';
+import Item from './components/Item';
 import ItemShow from './components/ItemShow';
 import Form from './components/Form';
+import Button from '@material-ui/core/Button';
 
 
 class App extends Component {
@@ -38,20 +40,20 @@ class App extends Component {
         <div className="landing">
 
           <div className="description">
-            <p>
-              Be a good person and report here if you found something that belongs to someone else.
-              You can also report that you lost something and if another user finds it, they can contact you.
+          <p>
+              Be a good person and report here if you <span className="span">found</span> something that belongs<br></br> to someone else.<br></br>
+              You can also report that you  <span className="span">lost </span>something <br></br>and if another user finds it, they can contact you.
            </p>
           </div>
 
-          <div className="landingButtonContainer">
-            <button className="landingButton" onClick={() => {
+          <div>
+            <Button id="postButton" onClick={() => {
               if (this.state.user) this.setView("form")
               else this.setView("signin")
               this.setFormType("new")
               this.setCurrentItem({});
             }}
-            >Post an Item!</button>
+            >Post an Item!</Button>
           </div>
 
         </div>
@@ -166,33 +168,39 @@ class App extends Component {
     return (
       <div className="app">
         {/* <Form/> */}
+        
         <div className="header">
           <h1 className="mainHeading" onClick={() => this.setView("landing")}>Lost and Found</h1>
+
           <div className="actionButtons">
-            <button className="searchButton" onClick={() => this.setView("search")} >Search</button>
+           
 
             {(this.state.user) ?
               <div>
-                <button className="postButton" onClick={() => {
+                <Button id="postButton" onClick={() => {
                   if (this.state.user) this.setView("form")
                   else this.setView("signin")
                   this.setFormType("new");
                   this.setCurrentItem({});
                 }}
-                >Post an Item!</button>
-                <button className="myItemsButton" onClick={() => this.setView("myitems")} >My Items</button>
-                <button className="logoutButton" onClick={() => {
+                >Post an Item!</Button>
+                <Button id="myItemsButton" onClick={() => this.setView("myitems")} >My Items</Button>
+                <Button id="logoutButton" onClick={() => {
                   this.setUser(null);
                   this.setView("landing");
                 }}
-                >Log Out</button>
+                >Log Out</Button>
               </div>
-              : <button className="loginRegisterButton" onClick={() => this.setView("signin")} >Login/Register</button>}
+              : <Button id="loginRegisterButton" onClick={() => this.setView("signin")} >Login/Register</Button>}
           </div>
+          <Button id="searchbutton" onClick={() => this.setView("search")} >Search</Button>
+
         </div>
 
-
+      <div className="renderContent">
+      <br></br>
         {this.renderContent()}
+     </div>
       </div>
     )
   }
