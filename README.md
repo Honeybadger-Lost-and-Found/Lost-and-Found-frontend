@@ -10,7 +10,6 @@
 - Cloudinary API
 
 ## NPM packages:
-- npm imageUploader
 - npm google location
 - npm materialize for styling
 
