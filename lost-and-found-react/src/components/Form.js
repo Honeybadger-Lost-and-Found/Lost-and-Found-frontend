@@ -72,8 +72,8 @@ class Form extends Component {
                 addeddate: today
             }
 
-            console.log("SUBMITTING: ", data);
-            const url = 'http://localhost:3000/items'
+            // console.log("SUBMITTING: ", data);
+            const url = 'https://lost-and-found.herokuapp.com/items'
             fetch(url, {
                 method: 'POST',
                 headers: {
@@ -83,8 +83,8 @@ class Form extends Component {
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data)
-                    console.log('Success');
+                    // console.log(data)
+                    // console.log('Success');
                     this.props.concatMyItems(data);
                     this.props.setView('myitems');
                 })
@@ -105,8 +105,8 @@ class Form extends Component {
                 addeddate: this.props.item.addeddate
             }
 
-            console.log("EDITING: ", newItem);
-            const url = `http://localhost:3000/items/${this.props.item.id}`
+            // console.log("EDITING: ", newItem);
+            const url = `https://lost-and-found.herokuapp.com/${this.props.item.id}`
             fetch(url, {
                 method: 'PUT',
                 headers: {
@@ -116,7 +116,7 @@ class Form extends Component {
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log('EDIT Success for: ', data)
+                    // console.log('EDIT Success for: ', data)
                     this.props.modifyMyItems(data);
                     // this.props.setCurrentItem(newItem)
                     // this.props.setView('itemshow');
@@ -129,10 +129,10 @@ class Form extends Component {
     }
 
     handleChange(event) {
-        console.log('changes');
+        // console.log('changes');
         // let formData = {};
         // formData[event.target.name] = event.target.value;
-        this.setState({ [event.target.name]: event.target.value }, console.log("THE STATE: ", this.state));
+        this.setState({ [event.target.name]: event.target.value });
 
     }
     setImgUrl(url) {

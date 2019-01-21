@@ -18,11 +18,11 @@ class Search extends Component {
 
 
   componentDidMount() {
-    const url = ('http://localhost:3000/items')
+    const url = ('https://lost-and-found.herokuapp.com/items')
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        console.log('get data from the api: ', data)
+        // console.log('get data from the api: ', data)
         this.setState({
           items: data,
           searched: false,
@@ -49,7 +49,7 @@ class Search extends Component {
       let found = false;
       for (let key in item) {
         if (item[key].toString().includes(this.state.searchTerm)) {
-          console.log("\n\n\n\n\n\n ************", item[key], key)
+          // console.log("\n\n\n\n\n\n ************", item[key], key)
           found = true;
         }
       }
@@ -77,7 +77,7 @@ class Search extends Component {
       return this.state.results.map((result, index) => {
         return (
           <div key={index} onClick={() => {
-            console.log("THE RESULT: ", result);
+            // console.log("THE RESULT: ", result);
             this.props.setCurrentItem(result);
             this.props.setView("itemshow");
           }}>
