@@ -25,8 +25,8 @@ class ItemShow extends Component {
     handelChange(event) {
         const currInput = event.target.name;
         const newValue = event.target.value;
-        console.log('current input', currInput);
-        console.log('new value:', newValue);
+        // console.log('current input', currInput);
+        // console.log('new value:', newValue);
 
         this.setState({
             [currInput]: newValue

@@ -18,7 +18,7 @@ class SignIn extends Component {
         else {
 
             event.preventDefault();
-            const url = `http://localhost:3000/users/${this.state.username}`;
+            const url = `https://lost-and-found.herokuapp.com/${this.state.username}`;
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
@@ -29,7 +29,7 @@ class SignIn extends Component {
                         this.props.setUser(data)
                         this.props.setView('landing')
                     }
-                    console.log(data);
+                    // console.log(data);
                 })
                 .catch(error => console.log(error))
         }

@@ -31,7 +31,7 @@ class App extends Component {
   }
 
   setCurrentItem(item) {
-    console.log("step 2", "set current item", item)
+    // console.log("step 2", "set current item", item)
     this.setState({ currentItem: item });
   }
 
@@ -41,11 +41,11 @@ class App extends Component {
   
 
   fetchUserItems(username) {
-    const url = `http://localhost:3000/items/users/${username}`
+    const url = `https://lost-and-found.herokuapp.com/items/users/${username}`
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        console.log("DATAAAA", data)
+        // console.log("DATAAAA", data)
         this.setState({
           myItems: data
         })

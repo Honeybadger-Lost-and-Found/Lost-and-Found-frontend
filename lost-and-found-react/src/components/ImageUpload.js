@@ -8,46 +8,41 @@ import WakeUp from './imageUpload/WakeUp'
 import { API_URL } from '../config'
 
 const toastColor = {
-    background: '#505050',
-    text: '#fff'
+  background: '#505050',
+  text: '#fff'
 }
 
 class ImageUpload extends Component {
-    constructor() {
-        super();
-        this.state = {
-            loading: true,
-            uploading: false,
-            images: []
+  constructor() {
+    super();
+    this.state = {
+      loading: true,
+      uploading: false,
+      images: []
+    }
+  }
+
+  componentDidMount() {
+    fetch(`${API_URL}/wake-up`)
+      .then(res => {
+        if (res.ok) {
+          return this.setState({ loading: false })
         }
-    }
+        const msg = 'Something is went wrong with Heroku'
+        this.toast(msg, 'custom', 2000, toastColor)
+      })
+  }
 
-    componentDidMount() {
-        fetch(`${API_URL}/wake-up`)
-            .then(res => {
-                if (res.ok) {
-                    return this.setState({ loading: false })
-                }
-                const msg = 'Something is went wrong with Heroku'
-                this.toast(msg, 'custom', 2000, toastColor)
-            })
-    }
+  toast = notify.createShowQueue()
 
-    toast = notify.createShowQueue()
-
-    //my work
-    handleUploadPhoto (){
-  const url = 'http://localhost:3000/items';
-  fetch(url)
-}
 
   onChange = e => {
-    const errs = [] 
+    const errs = []
     const files = Array.from(e.target.files)
 
     if (files.length > 3) {
       const msg = 'Only 3 images can be uploaded at a time'
-      return this.toast(msg, 'custom', 2000, toastColor)  
+      return this.toast(msg, 'custom', 2000, toastColor)
     }
 
     const formData = new FormData()
@@ -76,27 +71,27 @@ class ImageUpload extends Component {
       method: 'POST',
       body: formData
     })
-    .then(res => {
-      if (!res.ok) {
-        throw res
-      }
-      return res.json()
-    })
-    .then(images => {
-      this.setState({
-        uploading: false, 
-        images
+      .then(res => {
+        if (!res.ok) {
+          throw res
+        }
+        return res.json()
       })
-      console.log(images);
-      this.props.setImgUrl(images[0].url);
-      // take images and send to your api
-    })
-    .catch(err => {
-      err.json().then(e => {
-        this.toast(e.message, 'custom', 2000, toastColor)
-        this.setState({ uploading: false })
+      .then(images => {
+        this.setState({
+          uploading: false,
+          images
+        })
+        console.log(images);
+        this.props.setImgUrl(images[0].url);
+        // take images and send to your api
       })
-    })
+      .catch(err => {
+        err.json().then(e => {
+          this.toast(e.message, 'custom', 2000, toastColor)
+          this.setState({ uploading: false })
+        })
+      })
   }
 
   filter = id => {
@@ -112,32 +107,32 @@ class ImageUpload extends Component {
     this.setState({ images: this.filter(id) })
   }
 
-  render(){
+  render() {
     const { loading, uploading, images } = this.state
-    
+
     const content = () => {
-      switch(true) {
+      switch (true) {
         case loading:
           return <WakeUp />
         case uploading:
           return <Spinner />
         case images.length > 0:
-          return <Images 
-                  images={images} 
-                  removeImage={this.removeImage} 
-                  onError={this.onError}
-                 />
+          return <Images
+            images={images}
+            removeImage={this.removeImage}
+            onError={this.onError}
+          />
         default:
           return <Buttons onChange={this.onChange} />
       }
     }
-    return(
-        <div className='form'>
+    return (
+      <div className='form'>
         <Notifications />
 
         <div className='buttons'>
           {content()}
-        </div> 
+        </div>
 
       </div>
     )

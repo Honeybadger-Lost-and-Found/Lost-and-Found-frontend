@@ -24,8 +24,8 @@ class SignUp extends Component {
         }
 
 
-        console.log("data\n\n\n\n\n\n ******" , data)
-        const url = 'http://localhost:3000/users'
+        // console.log("data\n\n\n\n\n\n ******" , data)
+        const url = 'https://lost-and-found.herokuapp.com/users'
         fetch(url, {
             method: 'POST',
             headers: {
@@ -35,7 +35,7 @@ class SignUp extends Component {
           })
           .then(response => response.json())
           .then(data => {
-            console.log("SignUp successful for: ", data);
+            // console.log("SignUp successful for: ", data);
             this.props.setUser(data);
             this.props.setView("landing");
           })
@@ -46,7 +46,7 @@ class SignUp extends Component {
     }
 
     handleChange(event) {
-      console.log("changes"); 
+      // console.log("changes"); 
 
       let formData = {}; 
       formData[event.target.name] = event.target.value ; 
