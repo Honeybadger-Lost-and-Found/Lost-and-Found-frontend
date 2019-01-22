@@ -24,7 +24,7 @@ https://www.figma.com/file/Wywpwuglteo9Kz5mxteRz21u/Lost-and-found-prototype?nod
 
 
 ## Link to our hosting app:
-http://wild-faucet.surge.sh/
+http://truthful-unit.surge.sh/
 
 
 ## Unsolved problems that our team had to overcome:
